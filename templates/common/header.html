@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="header-container">
+    <div class="header-left-container">
+        <div class="header-logo">
+            <a href="{% url 'index' %}"><img class='header-logo' src="{% static 'images/places_logo.png' %}"
+                                             alt="places-logo"></a>
+        </div>
+        <div class="header-navigation">
+            <ul class="header-ul">
+                <li><a href="{% url 'index' %}">Начало</a></li>
+                <li><a href="{% url 'index' %}">Категории</a></li>
+                <li><a href="{% url 'index' %}">Блог</a></li>
+                <li><a href="{% url 'index' %}">Акаунт</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="header-sign-in-btn">
+        <a href=""><i class="fa-solid fa-right-to-bracket"></i></a>
+    </div>
+</div>
