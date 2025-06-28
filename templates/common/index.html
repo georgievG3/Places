@@ -1,5 +1,66 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 {% block content %}
-        <h1>Hello</h1>
+        <div class="index-category-container">
+            <div class="category-container-title">
+                <h1>Категории</h1>
+                <p class="category-container-description">
+                    Изберете категория и намерете желаното място!
+                </p>
+            </div>
+            <div class="category-container">
+                <a href="">
+                    <div class="category-container-card">
+                    <p>Каравани</p>
+                    <img src='{% static 'images/caravan-1858357_1920.jpg' %}' alt="caravan-image">
+                </div>
+                </a>
+                <a href="">
+                    <div class="category-container-card">
+                    <p>Къмпинги</p>
+                    <img src="{% static 'images/seaview-970918_1920.jpg' %}" alt="camping-image">
+                </div>
+                </a>
+                <a href="">
+                    <div class="category-container-card">
+                    <p>Апартаменти</p>
+                    <img src="{% static 'images/building-6776335_1920.jpg' %}" alt="apartment-image">
+                </div>
+                </a>
+                <a href="">
+                    <div class="category-container-card">
+                    <p>Бунгала</p>
+                    <img src="{% static 'images/aerial-1373406_1920.jpg' %}" alt="bungalow-image">
+                </div>
+                </a>
+            </div>
+        </div>
+        <div class="index-info-container">
+
+            <div class="info-container-card">
+                <i class="fa-regular fa-file"></i>
+                <p>Обяви</p>
+                <p>0</p>
+            </div>
+            <hr>
+            <div class="info-container-card">
+                <i class="fa-regular fa-calendar"></i>
+                <p>Обяви днес</p>
+                <p>0</p>
+            </div>
+            <hr>
+            <div class="info-container-card">
+                <i class="fa-regular fa-user"></i>
+                <p>Потребители</p>
+                <p>0</p>
+            </div>
+            <hr>
+            <div class="info-container-card">
+                <i class="fa-solid fa-list"></i>
+                <p>Категории</p>
+                <p>0</p>
+            </div>
+
+        </div>
 {% endblock %}

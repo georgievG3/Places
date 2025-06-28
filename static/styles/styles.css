@@ -8,6 +8,11 @@ body{
     font-family: Arial;
 }
 
+h1{
+    text-transform: uppercase;
+    color: #022c2c;
+}
+
 /*HEADER*/
 
 header{
@@ -54,19 +59,130 @@ header{
     color: white;
     text-transform: uppercase;
     font-size: 18px;
+    transition: 0.3s;
 }
 
 .header-sign-in-btn i{
     font-size: 20px;
-    transition: 0.1s;
+    transition: 0.3s;
     color: white;
 }
 
 .header-sign-in-btn i:hover {
     transform: scale(1.5);
+    transition: 0.3s;
 }
 
 .header-logo{
     width: 160px;
     margin-top: 7px;
 }
+
+
+
+/*INDEX PAGE*/
+
+
+/*CATEGORY CONTAINER*/
+
+.index-category-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.category-container-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-container-description{
+    color: gray;
+}
+
+.category-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 55%;
+    gap: 20px 50px;
+}
+
+.category-container-card{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.category-container-card p{
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    z-index: 100;
+    transition: 0.3s;
+    text-shadow: -1px 3px 3px rgba(0,0,0,0.59);
+}
+
+.category-container-card:hover p {
+  transform: translateY(80px);
+  transition: 0.3s;
+}
+
+.category-container-card:hover img {
+    filter: brightness(100%);
+    transition: 0.3s;
+}
+
+.category-container-card img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    filter: brightness(70%);
+    transition: 0.3s;
+}
+
+
+/*INFO CONTAINER*/
+.index-info-container{
+    background-color: #129990;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 50px 0;
+}
+
+.info-container-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    gap: 15px;
+}
+
+.info-container-card i{
+    font-size: 40px;
+}
+
+.info-container-card p{
+    text-transform: uppercase;
+    font-size: 25px ;
+}
+
+.index-info-container hr{
+    height: 70px;
+    outline: none;
+}
+
