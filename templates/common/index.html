@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block content %}
+    <div class="index-container">
+        <div class="index-map-container">
+            <div id="map"></div>
+            <div class="map-container-search">
+                <div class="map-container-category">Категория</div>
+                <div class="map-container-location">Местоположение</div>
+                <div class="map-container-people">Брой гости</div>
+                <button>Търсене</button>
+            </div>
+        </div>
         <div class="index-category-container">
             <div class="category-container-title">
                 <h1>Категории</h1>
@@ -36,8 +46,52 @@
                 </a>
             </div>
         </div>
+        <div class="index-recommended-container">
+            <h1>Предпочитани</h1>
+            <div class="recommended-container-cards">
+                <a href="">
+                    <div class="recommended-container-card">
+                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
+                        <p class="recommended-container-price">120-220BGN</p>
+                        <div class="recommended-container-info">
+                            <h3>Каравана "Нашето място"</h3>
+                            <p>Къмпинг златна рибка</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="recommended-container-card">
+                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
+                        <p class="recommended-container-price">120-220BGN</p>
+                        <div class="recommended-container-info">
+                            <h3>Каравана "Нашето място"</h3>
+                            <p>Къмпинг златна рибка</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="recommended-container-card">
+                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
+                        <p class="recommended-container-price">120-220BGN</p>
+                        <div class="recommended-container-info">
+                            <h3>Каравана "Нашето място"</h3>
+                            <p>Къмпинг златна рибка</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="recommended-container-card">
+                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
+                        <p class="recommended-container-price">120-220BGN</p>
+                        <div class="recommended-container-info">
+                            <h3>Каравана "Нашето място"</h3>
+                            <p>Къмпинг златна рибка</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
         <div class="index-info-container">
-
             <div class="info-container-card">
                 <i class="fa-regular fa-file"></i>
                 <p>Обяви</p>
@@ -61,6 +115,6 @@
                 <p>Категории</p>
                 <p>0</p>
             </div>
-
         </div>
+    </div>
 {% endblock %}
