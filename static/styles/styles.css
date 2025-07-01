@@ -2,15 +2,31 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body{
-    font-family: Arial;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 
 h1{
     text-transform: uppercase;
     color: #022c2c;
+}
+
+.hidden{
+    display: none;
+}
+
+.hover{
+    background-color: #096B68 !important;
+}
+
+.title-hr{
+    width: 50px;
+    height: 3px;
+    background-color: #022c2c;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 /*HEADER*/
@@ -155,7 +171,6 @@ header{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 50px;
 }
 
 .category-container-title{
@@ -217,8 +232,72 @@ header{
     transition: 0.3s;
 }
 
+    /*blog container*/
 
-/*info container*/
+.index-blog-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.blog-container-cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.blog-card{
+    width: 400px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: -1px 0px 14px 0px rgba(0, 0, 0, 0.24);
+    -webkit-box-shadow: -1px 0px 14px 0px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: -1px 0px 14px 0px rgba(0, 0, 0, 0.24);
+    padding: 20px;
+}
+
+.blog-card img{
+    width: 100%;
+}
+
+.blog-card button{
+    padding: 20px;
+    color: white;
+    background-color: #129990;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.blog-card button:hover{
+    background-color: #096B68;
+    transition: 0.3s;
+}
+
+.blog-card-info{
+    text-align: justify;
+    color: #022c2c;
+}
+
+.blog-card-date{
+    color: #022c2c;
+}
+
+.blog-card h3{
+    color: #022c2c;
+}
+
+
+    /*info container*/
 
 .index-info-container{
     background-color: #129990;
@@ -259,7 +338,6 @@ header{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 50px;
 }
 
 .recommended-container-cards{
@@ -310,6 +388,61 @@ header{
 
 .recommended-container-info p{
     color: #bfbbbb;
+}
+
+/*AUTHENTICATION PAGE*/
+
+
+.authentication-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    margin: 70px auto;
+    gap: 20px;
+}
+
+.authentication-form-container{
+    width: 100%;
+}
+
+.authentication-form-container form{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.authentication-form-container form input{
+    width: 100%;
+    padding: 20px 15px;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid gray;
+}
+
+.register-login-choice-btns button{
+    border: none;
+    outline: none;
+    background-color: #129990;
+    color: white;
+    padding: 15px 30px;
+    cursor: pointer;
+}
+
+.auth-hr{
+    height: 1px;
+    width: 100%;
+
+}
+
+input[type="submit"]{
+    background-color: #129990;
+    color: white;
+    cursor: pointer;
 }
 
 

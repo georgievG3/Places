@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="authentication-container">
+        <div class="register-login-choice-btns">
+            <button id ='login-btn' class = 'hover'>Вход</button>
+            <button id ='register-btn'>Регистрация</button>
+        </div>
+        <hr class = 'auth-hr'>
+        <div class="authentication-form-container hidden" id="register-form">
+            <form>
+                <input type="text" placeholder="Име">
+                <input type="text" placeholder="Фамилия">
+                <input type="text" placeholder="Потребителско име">
+                <input type="text" placeholder="Имейл">
+                <input type="text" placeholder="Парола">
+                <input type="text" placeholder="Повторете парола">
+                <input type="submit" value="Регистрация">
+            </form>
+        </div>
+        <div class="authentication-form-container" id='login-form'>
+            <form>
+                <input type="text" placeholder="Имейл">
+                <input type="text" placeholder="Парола">
+                <input type="submit" value="Вход">
+            </form>
+        </div>
+    </div>
+{% endblock %}
