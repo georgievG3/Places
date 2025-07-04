@@ -20,3 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 })
+
+const reviewCards = [...document.querySelectorAll('.reviews-cards')];
+const nextBtn = [...document.querySelectorAll('.next-btn')];
+const preBtn = [...document.querySelectorAll('.pre-btn')];
+
+reviewCards.forEach((item, i) => {
+    let containerDimensions = item.getBoundingClientRect();
+    let containerWidth = containerDimensions.width;
+
+    nextBtn[i].addEventListener('click', () => {
+        item.scrollLeft += containerWidth
+    })
+
+    preBtn[i].addEventListener('click', () => {
+        item.scrollLeft -= containerWidth
+    })
+})

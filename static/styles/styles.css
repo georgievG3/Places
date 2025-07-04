@@ -22,7 +22,7 @@ h1{
 }
 
 hr{
-    background-color: #022c2c;
+    background-color: #129990;
 }
 
 .basic-btn{
@@ -451,7 +451,7 @@ input[type="submit"]{
 /*LISTING PAGE*/
 
 .listing-page-container{
-    padding: 50px 200px 0 200px;
+    padding: 50px 200px 50px 200px;
 }
 
 .listing-title-container{
@@ -513,7 +513,7 @@ input[type="submit"]{
     justify-content: flex-start;
     flex-direction: column;
     gap: 20px;
-    width: 70%;
+    width: 75%;
 }
 
 .mini-description-container{
@@ -559,10 +559,6 @@ input[type="submit"]{
     border-radius: 5px;
 }
 
-.listing-description{
-    color: #022c2c;
-}
-
 .listing-map{
     height: 400px !important;
 }
@@ -584,15 +580,22 @@ input[type="submit"]{
     justify-content: flex-start;
     flex-direction: column;
     gap: 20px;
-    width: 30%;
+    width: 25%;
+    position: sticky;
+    top: 50vh;
+    transform: translateY(-30vh);
 }
 
-.reservation-container{
+.listing-social-sticky-container{
     box-shadow: 0px 0px 5px 0px rgba(18, 153, 144, 0.75);
     -webkit-box-shadow: 0px 0px 5px 0px rgba(18, 153, 144, 0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(18, 153, 144, 0.75);
     border-radius: 5px;
-    padding: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .reserve-btn{
@@ -603,6 +606,79 @@ input[type="submit"]{
     border-radius: 5px;
 }
 
+.reservation-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+/*listing reviews*/
+.listing-reviews-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 20px;
+}
+
+.reviews-cards{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    max-width: 100%;
+}
+
+.reviews-cards::-webkit-scrollbar{
+    display: none;
+}
+
+.card{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #129990;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    min-width: 300px;
+}
+
+.card-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.review-date-rating{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-bottom{
+    text-align: justify;
+}
+
+.review-rating i{
+    color: #ffb700;
+    font-size: 14px;
+}
+
+.pre-btn,
+.next-btn{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
 
 
