@@ -1,5 +1,8 @@
 from django.db import models
 
+from accounts.models import AppUser
+
+
 # Create your models here.
 class Location(models.Model):
     TERRAIN_CHOICES = [
@@ -54,6 +57,7 @@ class Listing(models.Model):
     square_meters = models.PositiveIntegerField(null=True, blank=True)
     amenities = models.ManyToManyField(Amenity, blank=True)
     description = models.TextField()
+    owner = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='listings')
 
 
 class Image(models.Model):

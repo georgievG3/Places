@@ -1,0 +1,21 @@
+{% extends 'common/base.html' %}
+{% load placeholder_filter %}
+
+{% block content %}
+    <div class="authentication-container">
+        <h1>Регистрация</h1>
+        <div class="authentication-form-container" id="register-form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.email|placeholder:'Email'}}
+                {{ form.email.errors }}
+                {{ form.password1|placeholder:'Password'}}
+                {{ form.password1.errors }}
+                {{ form.password2|placeholder:'Confirm password'}}
+                {{ form.password2.errors }}
+                <input type="submit" value="Регистрация">
+            </form>
+            <a href="{% url 'login' %}" class="have_an_account-btn">Вече имаш акаунт?</a>
+        </div>
+    </div>
+{% endblock %}

@@ -15,7 +15,23 @@
             </ul>
         </div>
     </div>
-    <div class="header-sign-in-btn">
-        <a href="{% url 'authenticate' %}"><i class="fa-solid fa-right-to-bracket"></i></a>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="header-right-container">
+            <div class="header-add-listing-btn">
+                <a href="">Добави обява</a>
+            </div>
+            <div class="header-sign-in-btn">
+                <form method = "post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit"><i class="fa-solid fa-right-from-bracket logout"></i></button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <div class="header-right-container">
+            <div class="header-sign-in-btn">
+                <a href="{% url 'register' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </div>
+    {% endif %}
 </div>

@@ -76,12 +76,6 @@ header{
 .header-ul li{
     list-style: none;
     transition: 0.1s;
-    padding: 12px;
-}
-
-.header-ul li:hover{
-    background-color: #129990;
-    border-radius: 50px;
 }
 
 .header-ul a{
@@ -90,6 +84,32 @@ header{
     text-transform: uppercase;
     font-size: 18px;
     transition: 0.3s;
+    padding: 12px;
+}
+
+.header-ul a:hover{
+    background-color: #129990;
+    border-radius: 50px;
+}
+
+.header-right-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+.header-add-listing-btn a{
+    text-decoration: none;
+    padding: 15px;
+    color: white;
+    background-color: #129990;
+    border-radius: 10px;
+}
+
+.header-add-listing-btn a:hover{
+    background-color: #119f96;
 }
 
 .header-sign-in-btn i{
@@ -101,6 +121,20 @@ header{
 .header-sign-in-btn i:hover {
     transform: scale(1.5);
     transition: 0.3s;
+}
+
+.header-sign-in-btn button{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor: pointer;
+}
+
+.logout{
+    transform: rotate(180deg);
+}
+
+.header-sign-in-btn .logout:hover {
+    transform: rotate(180deg) scale(1.5);
 }
 
 .header-logo{
@@ -408,6 +442,9 @@ header{
     width: 500px;
     margin: 70px auto;
     gap: 20px;
+    border: 1px solid #129990;
+    border-radius: 5px;
+    padding: 50px 30px 50px 30px;
 }
 
 .authentication-form-container{
@@ -431,25 +468,21 @@ header{
     border: 1px solid gray;
 }
 
-.register-login-choice-btns button{
-    border: none;
-    outline: none;
-    background-color: #129990;
-    color: white;
-    padding: 15px 30px;
-    cursor: pointer;
-}
-
-.auth-hr{
-    height: 1px;
-    width: 100%;
-
-}
 
 input[type="submit"]{
     background-color: #129990;
     color: white;
     cursor: pointer;
+}
+
+.errorlist li{
+    list-style-type: none;
+    color: red;
+}
+
+.form-errors li{
+    list-style-type: none;
+    color: red;
 }
 
 /*LISTING PAGE*/
