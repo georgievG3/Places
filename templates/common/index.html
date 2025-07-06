@@ -52,7 +52,11 @@
         <div class="index-recommended-container">
             <h1>Предпочитани</h1>
             <hr class = 'title-hr'>
-            <div class="recommended-container-cards">
+            <div class="listing-reviews-buttons">
+                <button class="pre-btn"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+            <div class="recommended-container-cards slider-container">
                 <a href="{% url 'listing-page' %}">
                     <div class="recommended-container-card">
                         <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
@@ -93,12 +97,50 @@
                         </div>
                     </div>
                 </a>
+                <a href="{% url 'listing-page' %}">
+                    <div class="recommended-container-card">
+                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
+                        <p class="recommended-container-price">120-220BGN</p>
+                        <div class="recommended-container-info">
+                            <h3>Каравана "Нашето място"</h3>
+                            <p>Къмпинг златна рибка</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'listing-page' %}">
+                    <div class="recommended-container-card">
+                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
+                        <p class="recommended-container-price">120-220BGN</p>
+                        <div class="recommended-container-info">
+                            <h3>Каравана "Нашето място"</h3>
+                            <p>Къмпинг златна рибка</p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="index-blog-container">
             <h1>Блог</h1>
             <hr class = 'title-hr'>
-            <div class="blog-container-cards">
+            <div class="listing-reviews-buttons">
+                <button class="pre-btn"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+            <div class="blog-container-cards slider-container">
+                <div class="blog-card">
+                    <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
+                    <h3>Интересна новина</h3>
+                    <p class = 'blog-card-info'>Караваната под наем предлага удобство и свобода за почивка сред природата или край морето. Напълно оборудвана, тя е перфектен избор за уютно бягство с усещане за дом, където и да сте.</p>
+                    <p class = 'blog-card-date'>22.06.2025</p>
+                    <button class = 'basic-btn'>Прочети повече</button>
+                </div>
+                <div class="blog-card">
+                    <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
+                    <h3>Интересна новина</h3>
+                    <p class = 'blog-card-info'>Караваната под наем предлага удобство и свобода за почивка сред природата или край морето. Напълно оборудвана, тя е перфектен избор за уютно бягство с усещане за дом, където и да сте.</p>
+                    <p class = 'blog-card-date'>22.06.2025</p>
+                    <button class = 'basic-btn'>Прочети повече</button>
+                </div>
                 <div class="blog-card">
                     <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
                     <h3>Интересна новина</h3>

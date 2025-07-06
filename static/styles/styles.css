@@ -115,7 +115,7 @@ header{
 .index-container{
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 80px;
 }
 
 /*map container*/
@@ -246,14 +246,17 @@ header{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    padding: 0 200px 50px 200px;
+    position: relative;
+
 }
 
 .blog-container-cards{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 50px;
 }
 
@@ -264,14 +267,13 @@ header{
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    box-shadow: -1px 0px 14px 0px rgba(0, 0, 0, 0.24);
-    -webkit-box-shadow: -1px 0px 14px 0px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: -1px 0px 14px 0px rgba(0, 0, 0, 0.24);
     padding: 20px;
+    border: 1px solid #129990;
+    border-radius: 5px;
 }
 
 .blog-card img{
-    width: 100%;
+    width: 350px;
 }
 
 .blog-card button{
@@ -339,14 +341,16 @@ header{
 .index-recommended-container{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    position: relative;
+    padding: 0 200px 50px 200px;
 }
 
 .recommended-container-cards{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 40px;
 }
 
@@ -620,15 +624,14 @@ input[type="submit"]{
     flex-direction: column;
     overflow: hidden;
     gap: 20px;
+    position: relative;
+    padding-bottom: 50px;
 }
 
 .reviews-cards{
     display: flex;
     align-items: center;
     gap: 20px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    max-width: 100%;
 }
 
 .reviews-cards::-webkit-scrollbar{
@@ -673,12 +676,45 @@ input[type="submit"]{
     font-size: 14px;
 }
 
+.listing-reviews-buttons{
+    background-color: #129990;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 48.4%;
+    gap: 20px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .pre-btn,
 .next-btn{
     border: none;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    z-index: 999;
+    color: white;
 }
 
+.pre-btn:hover{
+    transform: scale(1.1);
+}
+
+.next-btn:hover{
+    transform: scale(1.1);
+}
+
+.slider-container{
+    position: relative;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    max-width: 100%;
+}
+
+.slider-container::-webkit-scrollbar{
+    display: none;
+}
 

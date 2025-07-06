@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-const reviewCards = [...document.querySelectorAll('.reviews-cards')];
+const sliderContainer = [...document.querySelectorAll('.slider-container')];
 const nextBtn = [...document.querySelectorAll('.next-btn')];
 const preBtn = [...document.querySelectorAll('.pre-btn')];
 
-reviewCards.forEach((item, i) => {
+sliderContainer.forEach((item, i) => {
     let containerDimensions = item.getBoundingClientRect();
     let containerWidth = containerDimensions.width;
 
