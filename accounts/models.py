@@ -10,6 +10,8 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     email = models.EmailField(unique=True,)
+    first_name = models.CharField(max_length=30, blank=True, null=True)
+    last_name = models.CharField(max_length=30, blank=True, null=True)
     is_staff = models.BooleanField(default=False,)
     is_active = models.BooleanField(default=True,)
     is_partner = models.BooleanField(default=False,)
@@ -19,8 +21,9 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=30, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     profile_picture = models.URLField(blank=True, null=True)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    profile_details = models.TextField(blank=True, null=True)
+
 

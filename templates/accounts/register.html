@@ -7,11 +7,15 @@
         <div class="authentication-form-container" id="register-form">
             <form method="post">
                 {% csrf_token %}
-                {{ form.email|placeholder:'Email'}}
+                {{ form.email|placeholder:'Имейл'}}
                 {{ form.email.errors }}
-                {{ form.password1|placeholder:'Password'}}
+                {{ form.first_name|placeholder:'Име'}}
+                {{ form.first_name.errors }}
+                {{ form.last_name|placeholder:'Фамилия'}}
+                {{ form.last_name.errors }}
+                {{ form.password1|placeholder:'Парола'}}
                 {{ form.password1.errors }}
-                {{ form.password2|placeholder:'Confirm password'}}
+                {{ form.password2|placeholder:'Повтори парола'}}
                 {{ form.password2.errors }}
                 <input type="submit" value="Регистрация">
             </form>

@@ -10,7 +10,7 @@ UserModel = get_user_model()
 @admin.register(UserModel)
 class AppUserAdmin(UserAdmin):
     ordering = ("email",)
-    list_display = ("email", "is_active", "is_staff", "is_partner")
+    list_display = ("email", "first_name", "last_name", "is_active", "is_staff", "is_partner")
     add_form = AppUserCreationForm
     form = AppUserChangeForm
 

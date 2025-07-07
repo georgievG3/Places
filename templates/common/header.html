@@ -11,7 +11,12 @@
                 <li><a href="{% url 'index' %}">Начало</a></li>
                 <li><a href="{% url 'index' %}">Категории</a></li>
                 <li><a href="{% url 'index' %}">Блог</a></li>
-                <li><a href="{% url 'index' %}">Акаунт</a></li>
+                {% if request.user.is_authenticated%}
+                    <li><a href="{% url 'profile-details'%}">Акаунт</a></li>
+                {% else %}
+                    <li><a href="{% url 'register'%}">Акаунт</a></li>
+                {% endif %}
+
             </ul>
         </div>
     </div>

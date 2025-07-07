@@ -718,7 +718,7 @@ input[type="submit"]{
     bottom: 0;
     left: 48.4%;
     gap: 20px;
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
 }
 
@@ -749,5 +749,48 @@ input[type="submit"]{
 
 .slider-container::-webkit-scrollbar{
     display: none;
+}
+
+/*PROFILE PAGE*/
+
+.profile-details-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin: 100px auto;
+}
+
+.profile-details-hr{
+    transform: rotate(90deg);
+    width: 100px;
+}
+
+.profile-details hr{
+    width: 100%;
+}
+
+.profile-details a{
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.profile-details{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+}
+
+.profile-picture-container img{
+    width: 300px;
+    border-radius: 50%;
 }
 

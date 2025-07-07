@@ -7,8 +7,8 @@
         <div class="authentication-form-container" id='login-form'>
             <form method="post">
                 {% csrf_token %}
-                {{ form.username|placeholder:"Email"}}
-                {{ form.password|placeholder:"Your password"}}
+                {{ form.username|placeholder:"Имейл"}}
+                {{ form.password|placeholder:"Парола"}}
                 <input type="submit" value="Вход">
                 {% if form.errors %}
                     <ul class="form-errors">

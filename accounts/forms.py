@@ -1,13 +1,15 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
-from django.forms import forms
+from django import forms
+
+from accounts.models import Profile
 
 UserModel = get_user_model()
 
 class AppUserCreationForm(UserCreationForm):
     class Meta:
         model = UserModel
-        fields = ['email']
+        fields = ['email', 'first_name', 'last_name']
 
     def __init__(self, *args, **kwargs):
         super(AppUserCreationForm, self).__init__(*args, **kwargs)
@@ -49,3 +51,33 @@ class AuthForm(AuthenticationForm):
         ),
         "inactive": ("Този акаунт не е активен.."),
     }
+
+
+class ProfileBaseForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_picture', 'phone_number', 'profile_details','date_of_birth']
+
+
+class ProfileEditForm(ProfileBaseForm):
+    first_name = forms.CharField(label='Име', max_length=30, required=False)
+    last_name = forms.CharField(label='Фамилия', max_length=30, required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+
+        self.fields['first_name'].initial = self.user.first_name
+        self.fields['last_name'].initial = self.user.last_name
+
+    def save(self, commit=True):
+        profile = super().save(commit=False)
+
+        self.user.first_name = self.cleaned_data['first_name']
+        self.user.last_name = self.cleaned_data['last_name']
+
+        if commit:
+            self.user.save()
+            profile.save()
+
+        return profile

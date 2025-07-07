@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="profile-details-container">
+        <div class="profile-picture-container">
+            <img src="{% static 'images/profile-picture.jpeg' %}" alt="profile-picture">
+        </div>
+        <hr class="profile-details-hr">
+        <div class="profile-details">
+            <h1>Моят Профил</h1>
+            <hr>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit"> Редактирай </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

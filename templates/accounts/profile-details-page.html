@@ -1,0 +1,41 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="profile-details-container">
+        <div class="profile-picture-container">
+            <img src="{% static 'images/profile-picture.jpeg' %}" alt="profile-picture">
+        </div>
+        <hr class="profile-details-hr">
+        <div class="profile-details">
+            <h1>Моят Профил</h1>
+            <hr>
+
+            <h2>Имена</h2>
+            {% if object.user.first_name or object.user.last_name %}
+                <p>Име: {{ object.user.first_name|default:"-" }}</p>
+                <p>Фамилия: {{ object.user.last_name|default:"-" }}</p>
+            {% else %}
+                <p>Все още не сте попълнили имената си.</p>
+            {% endif %}
+
+            <hr>
+            <h2>Контакти</h2>
+            {% if object.phone_number or object.user.email %}
+                <p>Телефон: {{ object.phone_number|default:"-" }}</p>
+                <p>Имейл: {{ object.user.email|default:"-" }}</p>
+            {% else %}
+                <p>Няма въведени данни за контакт.</p>
+            {% endif %}
+
+            <hr>
+            <h2>Информация</h2>
+            {% if object.profile_details %}
+                <p>{{ object.profile_details }}</p>
+            {% else %}
+                <p>Няма добавена информация.</p>
+            {% endif %}
+
+            <a href="{% url 'profile-edit' %}" class='basic-btn'>Редактирай профил</a>
+        </div>
+    </div>
+{% endblock %}
