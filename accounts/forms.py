@@ -58,6 +58,13 @@ class ProfileBaseForm(forms.ModelForm):
         model = Profile
         fields = ['profile_picture', 'phone_number', 'profile_details','date_of_birth']
 
+        labels = {
+            'profile_picture': 'Профилна снимка',
+            'phone_number': 'Телефонен номер',
+            'profile_details': 'Детайли за профила',
+            'date_of_birth': 'Дата на раждане',
+        }
+
 
 class ProfileEditForm(ProfileBaseForm):
     first_name = forms.CharField(label='Име', max_length=30, required=False)

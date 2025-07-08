@@ -9,10 +9,10 @@
         <div class="profile-details">
             <h1>Моят Профил</h1>
             <hr>
-            <form method="post">
+            <form method="post" class = 'profile-edit-form'>
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit"> Редактирай </button>
+                <button type="submit" class = 'basic-btn'> Редактирай </button>
             </form>
         </div>
     </div>

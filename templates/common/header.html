@@ -23,7 +23,7 @@
     {% if user.is_authenticated %}
         <div class="header-right-container">
             <div class="header-add-listing-btn">
-                <a href="">Добави обява</a>
+                <a href="{% url 'add-listing' %}">Добави обява</a>
             </div>
             <div class="header-sign-in-btn">
                 <form method = "post" action="{% url 'logout' %}">

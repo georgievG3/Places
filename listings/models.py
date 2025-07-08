@@ -49,7 +49,7 @@ class Listing(models.Model):
 
     title = models.CharField(max_length=100)
     type = models.CharField(max_length=20, choices=LISTING_TYPE_CHOICES)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
     camping = models.ForeignKey(Camping, on_delete=models.SET_NULL, null=True, blank=True)
     rooms = models.PositiveIntegerField(null=True, blank=True)
     pets_allowed = models.BooleanField(default=False)

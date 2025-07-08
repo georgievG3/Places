@@ -758,7 +758,7 @@ input[type="submit"]{
     align-items: center;
     justify-content: center;
     gap: 50px;
-    margin: 100px auto;
+    margin: 80px auto;
 }
 
 .profile-details-hr{
@@ -789,8 +789,57 @@ input[type="submit"]{
     width: 500px;
 }
 
+.profile-details p{
+    padding-left: 5px;
+}
+
 .profile-picture-container img{
     width: 300px;
     border-radius: 50%;
 }
 
+
+/*profile edit*/
+.profile-edit-form{
+    width: 500px;
+}
+
+.profile-edit-form p{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.profile-edit-form label{
+    font-size: 20px;
+    color: #022c2c;
+    padding: 5px;
+}
+
+.profile-edit-form input{
+    width: 100%;
+    padding: 15px 5px 15px 5px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.profile-edit-form textarea{
+    width: 100%;
+    padding: 5px;
+    outline: none;
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.profile-edit-form button{
+    width: 100%;
+    padding: 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+}
