@@ -13,15 +13,11 @@ class Location(models.Model):
         ('village', 'Село'),
         ('other', 'Друг'),
     ]
-    name = models.CharField(max_length=255)
     region = models.CharField(max_length=255)
     address = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     terrain_type = models.CharField(max_length=20, choices=TERRAIN_CHOICES, default='other')
-
-    def __str__(self):
-        return f"{self.name} ({self.region})"
 
 
 class Amenity(models.Model):
@@ -48,6 +44,7 @@ class Listing(models.Model):
     ]
 
     title = models.CharField(max_length=100)
+    mini_description = models.CharField(max_length=50)
     type = models.CharField(max_length=20, choices=LISTING_TYPE_CHOICES)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
     camping = models.ForeignKey(Camping, on_delete=models.SET_NULL, null=True, blank=True)

@@ -1,8 +1,90 @@
 {% extends 'common/base.html' %}
+{% load static %}
 {% block content %}
-    <form method = 'post'>
+    <form method = 'post' enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Submit</button>
+        <div class="add-listing-form">
+            <div class="add-listing-form-details">
+                <h1>Детайли за обявата</h1>
+                <hr>
+                <div class="listing-form-detail-info">
+                    <div class="listing-form-detail-input">
+                        {{ form.type.label_tag }}
+                        {{ form.type }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.camping.label_tag }}
+                        {{ form.camping }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.rooms.label_tag }}
+                        {{ form.rooms }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.min_nights.label_tag }}
+                        {{ form.min_nights }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.square_meters.label_tag }}
+                        {{ form.square_meters }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.mini_description.label_tag }}
+                        {{ form.mini_description }}
+                    </div>
+                    <div class="listing-form-detail-input-pets">
+                        {{ form.pets_allowed.label_tag }}
+                        {{ form.pets_allowed }}
+                    </div>
+                </div>
+                <div class="listing-form-details-description">
+                    <label>Описание:</label>
+                    {{ form.description }}
+                </div>
+                <div class="listing-form-details-amenities">
+                    <label>Удобства:</label>
+                    {{ form.amenities }}
+                </div>
+            </div>
+            <div class="add-listing-form-details">
+                <h1>Локация</h1>
+                <hr>
+                <div class="index-map-container">
+                    <div id="map" class = 'add-listing-map'>
+
+                    </div>
+                </div>
+                <div class="listing-form-details-location">
+                    <div class="listing-form-details-location-input">
+                        {{ location_form.region.label_tag }}
+                        {{ location_form.region }}
+                    </div>
+                    <div class="listing-form-details-location-input">
+                        {{ location_form.address.label_tag }}
+                        {{ location_form.address }}
+                    </div>
+                    <div class="listing-form-details-location-input">
+                        {{ location_form.terrain_type.label_tag }}
+                        {{ location_form.terrain_type }}
+                    </div>
+                    {{ location_form.latitude }}
+                    {{ location_form.longitude }}
+                </div>
+            </div>
+            <div class="add-listing-form-details">
+                <h1>Снимки</h1>
+                <hr>
+                {{ image_form }}
+            </div>
+            {{ form.errors }}
+            {{ location_form.errors }}
+            {{ image_form.errors }}
+            <button type="submit">Submit</button>
+        </div>
     </form>
+    <script src="{% static 'javascript/add-listing-map.js' %}"></script>
 {% endblock %}

@@ -843,3 +843,114 @@ input[type="submit"]{
     color: white;
     font-size: 16px;
 }
+
+/*ADD LISTING PAGE*/
+.add-listing-form{
+    width: 90%;
+    margin: 50px auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.add-listing-form-details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.add-listing-form-details label{
+    color: #022c2c;
+    font-size: 18px;
+}
+
+.listing-form-detail-info{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.listing-form-detail-input-pets{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    gap: 5px;
+}
+
+.listing-form-detail-input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.listing-form-detail-input input, select{
+    outline: none;
+    padding: 15px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.listing-form-details-amenities{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.listing-form-details-description{
+     display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.listing-form-details-description textarea{
+    width: 100%;
+    outline: none;
+    padding: 15px;
+}
+
+#id_amenities{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 18px;
+    gap: 5px;
+}
+
+#id_amenities input{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.add-listing-map{
+    height: 500px !important;
+}
+
+.listing-form-details-location{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.listing-form-details-location-input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.listing-form-details-location-input input, select{
+    outline: none;
+    padding: 15px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 500px;
+}
