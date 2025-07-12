@@ -386,6 +386,7 @@ header{
     align-items: center;
     justify-content: flex-start;
     gap: 40px;
+    padding: 20px;
 }
 
 .recommended-container-card{
@@ -406,6 +407,14 @@ header{
     height: 100%;
 }
 
+.recommended-image-shadow{
+    background-color: rgba(0, 0, 0, 0.22);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
 .recommended-container-price{
     position: absolute;
     top: 5%;
@@ -414,6 +423,7 @@ header{
     padding: 5px;
     border-radius: 20px;
     color: white;
+    z-index: 2;
 }
 
 .recommended-container-info{
@@ -421,6 +431,7 @@ header{
     bottom: 5%;
     left: 5%;
     text-shadow: -1px 3px 3px rgba(0,0,0,0.59);
+    z-index: 2;
 }
 
 .recommended-container-info h3 {
@@ -935,9 +946,8 @@ input[type="submit"]{
 }
 
 .listing-form-details-location{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
 }
 

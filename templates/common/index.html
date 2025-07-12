@@ -60,11 +60,16 @@
                 {% for listing in listings%}
                     <a href="{% url 'listing-detail' listing.pk %}">
                         <div class="recommended-container-card">
+                            <div class="recommended-image-shadow"></div>
                             <img src="{{ listing.images.first.image.url }}" alt="recommended-img">
-                            <p class="recommended-container-price">120-220BGN</p>
+                            <p class="recommended-container-price">от {{ listing.regular_price }}BGN</p>
                             <div class="recommended-container-info">
                                 <h3>{{ listing.title }}</h3>
-                                <p>{{ listing.camping}}</p>
+                                {% if listing.type == 'camper' or listing.type == 'bungalow' %}
+                                    <p>{{ listing.camping }} / {{ listing.location.region }}</p>
+                                {% else %}
+                                    <p>{{ listing.location.city }} / {{ listing.location.region }}</p>
+                                {% endif %}
                             </div>
                         </div>
                     </a>

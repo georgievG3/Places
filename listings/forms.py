@@ -1,6 +1,7 @@
 from django import forms
+from django.forms import inlineformset_factory
 
-from listings.models import Listing, Location, Amenity, Image
+from listings.models import Listing, Location, Amenity, Image, MonthlyPrice
 
 
 class AddListingForm(forms.ModelForm):
@@ -23,6 +24,7 @@ class AddListingForm(forms.ModelForm):
             'square_meters': 'Квадратни метри',
             'pets_allowed': 'Разрешено за животни',
             'mini_description': 'Малко описание',
+            'regular_price': 'Редовна цена',
         }
 
 
@@ -35,6 +37,7 @@ class AddListingLocationForm(forms.ModelForm):
             'name': 'Име',
             'region': 'Държава',
             'address': 'Адрес',
+            'city': 'Град',
             'terrain_type': 'Вид на терена',
         }
 
@@ -50,8 +53,22 @@ class AddListingAmenityForm(forms.ModelForm):
         fields = '__all__'
 
 
-# class AddListingImageForm(forms.ModelForm):
-#     class Meta:
-#         model = Image
-#         fields = ('image', )
+class MonthlyPriceForm(forms.ModelForm):
+    class Meta:
+        model = MonthlyPrice
+        fields = ['month', 'price']
+        labels = {
+            'month': 'Месец',
+            'price': 'Цена за месеца',
+        }
+
+
+MonthlyPriceFormSet = inlineformset_factory(
+    Listing,
+    MonthlyPrice,
+    form=MonthlyPriceForm,
+    fields=['month', 'price'],
+    extra=5,
+    can_delete=False
+)
 

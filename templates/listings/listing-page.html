@@ -12,7 +12,7 @@
         </div>
         <div class="listing-images-container">
             <img class = 'image-grid-col-2 image-grid-row-2' src="{{ listing.images.first.image.url }}" alt="">
-            {% for image in listing.images.all|slice:"1:" %}
+            {% for image in listing.images.all|slice:"1:5" %}
                 <img src="{{ image.image.url }}" alt="">
             {% endfor %}
         </div>
@@ -221,8 +221,9 @@
                     </div>
                 </div>
                 <div class="listing-social-sticky-container">
-                    <p>Адрес: Созопол</p>
-                    <p>Телефон: 0897373838</p>
+                    <p>Адрес: {{ listing.location.address }}</p>
+                    <p>Държава: {{ listing.location.region }}</p>
+                    <p>Град: {{ listing.location.city }}</p>
                 </div>
 {#                <div class="nearby-destinations">#}
 {#                    <ul>#}

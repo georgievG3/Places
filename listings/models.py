@@ -15,6 +15,7 @@ class Location(models.Model):
     ]
     region = models.CharField(max_length=255)
     address = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     terrain_type = models.CharField(max_length=20, choices=TERRAIN_CHOICES, default='other')
@@ -55,7 +56,24 @@ class Listing(models.Model):
     square_meters = models.PositiveIntegerField(null=True, blank=True)
     amenities = models.ManyToManyField(Amenity, blank=True)
     description = models.TextField()
+    regular_price = models.DecimalField(max_digits=8, decimal_places=2)
     owner = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='listings')
+
+
+class MonthlyPrice(models.Model):
+    MONTH_CHOICES = [
+        (5, 'Май'),
+        (6, 'Юни'),
+        (7, 'Юли'),
+        (8, 'Август'),
+        (9, 'Септември'),
+    ]
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='monthly_prices')
+    month = models.PositiveSmallIntegerField(choices=MONTH_CHOICES)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    class Meta:
+        unique_together = ('listing', 'month')
 
 
 class Image(models.Model):

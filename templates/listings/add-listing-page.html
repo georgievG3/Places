@@ -40,6 +40,10 @@
                         {{ form.mini_description.label_tag }}
                         {{ form.mini_description }}
                     </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.regular_price.label_tag }}
+                        {{ form.regular_price }}
+                    </div>
                     <div class="listing-form-detail-input-pets">
                         {{ form.pets_allowed.label_tag }}
                         {{ form.pets_allowed }}
@@ -53,6 +57,17 @@
                     <label>Удобства:</label>
                     {{ form.amenities }}
                 </div>
+            </div>
+            <div class="add-listing-form-details">
+                <h1>Сезонни цени</h1>
+                <hr>
+                {{ monthly_price_formset.management_form }}
+                {% for form in monthly_price_formset %}
+                    <div class="monthly-price-form">
+                        {{ form.month.label }} {{ form.month }}
+                        {{ form.price.label }} {{ form.price }}
+                    </div>
+                {% endfor %}
             </div>
             <div class="add-listing-form-details">
                 <h1>Локация</h1>
@@ -72,6 +87,10 @@
                         {{ location_form.address }}
                     </div>
                     <div class="listing-form-details-location-input">
+                        {{ location_form.city.label_tag }}
+                        {{ location_form.city }}
+                    </div>
+                    <div class="listing-form-details-location-input">
                         {{ location_form.terrain_type.label_tag }}
                         {{ location_form.terrain_type }}
                     </div>
@@ -84,9 +103,6 @@
                 <hr>
                 <input type="file" name="images" multiple>
             </div>
-            {{ form.errors }}
-            {{ location_form.errors }}
-            {{ image_form.errors }}
             <button type="submit">Submit</button>
         </div>
     </form>

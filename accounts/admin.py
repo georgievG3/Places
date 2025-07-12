@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 from accounts.forms import AppUserCreationForm, AppUserChangeForm
 from accounts.models import Profile
+from listings.models import Listing
 
 UserModel = get_user_model()
 # Register your models here.
@@ -44,4 +46,9 @@ class AppUserAdmin(UserAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
+    ...
+
+
+@admin.register(Listing)
+class ListingAdmin(admin.ModelAdmin):
     ...
