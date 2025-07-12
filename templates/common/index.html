@@ -57,66 +57,18 @@
                 <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>
             </div>
             <div class="recommended-container-cards slider-container">
-                <a href="{% url 'listing-page' %}">
-                    <div class="recommended-container-card">
-                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
-                        <p class="recommended-container-price">120-220BGN</p>
-                        <div class="recommended-container-info">
-                            <h3>Каравана "Нашето място"</h3>
-                            <p>Къмпинг златна рибка</p>
+                {% for listing in listings%}
+                    <a href="{% url 'listing-detail' listing.pk %}">
+                        <div class="recommended-container-card">
+                            <img src="{{ listing.images.first.image.url }}" alt="recommended-img">
+                            <p class="recommended-container-price">120-220BGN</p>
+                            <div class="recommended-container-info">
+                                <h3>{{ listing.title }}</h3>
+                                <p>{{ listing.camping}}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="recommended-container-card">
-                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
-                        <p class="recommended-container-price">120-220BGN</p>
-                        <div class="recommended-container-info">
-                            <h3>Каравана "Нашето място"</h3>
-                            <p>Къмпинг златна рибка</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="recommended-container-card">
-                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
-                        <p class="recommended-container-price">120-220BGN</p>
-                        <div class="recommended-container-info">
-                            <h3>Каравана "Нашето място"</h3>
-                            <p>Къмпинг златна рибка</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="recommended-container-card">
-                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
-                        <p class="recommended-container-price">120-220BGN</p>
-                        <div class="recommended-container-info">
-                            <h3>Каравана "Нашето място"</h3>
-                            <p>Къмпинг златна рибка</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="{% url 'listing-page' %}">
-                    <div class="recommended-container-card">
-                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
-                        <p class="recommended-container-price">120-220BGN</p>
-                        <div class="recommended-container-info">
-                            <h3>Каравана "Нашето място"</h3>
-                            <p>Къмпинг златна рибка</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="{% url 'listing-page' %}">
-                    <div class="recommended-container-card">
-                        <img src="{% static 'images/caravan-2718561_1920.jpg' %}" alt="recommended-img">
-                        <p class="recommended-container-price">120-220BGN</p>
-                        <div class="recommended-container-info">
-                            <h3>Каравана "Нашето място"</h3>
-                            <p>Къмпинг златна рибка</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                {% endfor %}
             </div>
         </div>
         <div class="index-blog-container">
@@ -191,5 +143,4 @@
         </div>
     </div>
     <script src="{% static 'javascript/index-map.js' %}"></script>
-
 {% endblock %}

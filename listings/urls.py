@@ -1,8 +1,9 @@
 from django.urls import path
 
 from listings import views
+from listings.views import ListingDetailsView
 
 urlpatterns = [
-    path('', views.listing_page_view, name='listing-page'),
+    path('listing/<int:pk>/', ListingDetailsView.as_view(), name='listing-detail'),
     path('add-listing/', views.AddListingView.as_view(), name='add-listing'),
 ]

@@ -29,6 +29,10 @@
                         {{ form.min_nights }}
                     </div>
                     <div class="listing-form-detail-input">
+                        {{ form.max_people.label_tag }}
+                        {{ form.max_people }}
+                    </div>
+                    <div class="listing-form-detail-input">
                         {{ form.square_meters.label_tag }}
                         {{ form.square_meters }}
                     </div>
@@ -78,7 +82,7 @@
             <div class="add-listing-form-details">
                 <h1>Снимки</h1>
                 <hr>
-                {{ image_form }}
+                <input type="file" name="images" multiple>
             </div>
             {{ form.errors }}
             {{ location_form.errors }}

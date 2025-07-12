@@ -19,6 +19,7 @@ class AddListingForm(forms.ModelForm):
             'camping': 'Къмпинг',
             'rooms': 'Брой стаи',
             'min_nights': 'Минималнен брой нощувки',
+            'max_people': 'Максимален брой хора',
             'square_meters': 'Квадратни метри',
             'pets_allowed': 'Разрешено за животни',
             'mini_description': 'Малко описание',
@@ -49,8 +50,8 @@ class AddListingAmenityForm(forms.ModelForm):
         fields = '__all__'
 
 
-class AddListingImageForm(forms.ModelForm):
-    class Meta:
-        model = Image
-        fields = ('image', )
+# class AddListingImageForm(forms.ModelForm):
+#     class Meta:
+#         model = Image
+#         fields = ('image', )
 

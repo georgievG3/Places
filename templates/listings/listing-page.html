@@ -4,28 +4,35 @@
 {% block content %}
     <div class="listing-page-container">
         <div class="listing-title-container">
-            <h1>Каравана "Нашето място"</h1>
+            <h1>{{ listing.title }}</h1>
             <div class="listing-title-container-btns">
                 <p><i class="fa-solid fa-arrow-up-from-bracket"></i>Сподели</p>
                 <p><i class="fa-regular fa-heart"></i>Харесай</p>
             </div>
         </div>
         <div class="listing-images-container">
-            <img class = 'image-grid-col-2 image-grid-row-2' src="{% static 'images/listing-images/bedroom-1285156_1920.jpg' %}" alt="">
-            <img src="{% static 'images/listing-images/caravan-6740396_1920.jpg' %}" alt="">
-            <img src="{% static 'images/listing-images/hotel-1749602_1920.jpg' %}" alt="">
-            <img src="{% static 'images/listing-images/hotel-room-5858067_1920.jpg' %}" alt="">
-            <img src="{% static 'images/listing-images/window-3178666_1920.jpg' %}" alt="">
+            <img class = 'image-grid-col-2 image-grid-row-2' src="{{ listing.images.first.image.url }}" alt="">
+            {% for image in listing.images.all|slice:"1:" %}
+                <img src="{{ image.image.url }}" alt="">
+            {% endfor %}
         </div>
-        <h2 class="mini-title">Каравана в къмпинг 'Златна Рибка'</h2>
+        <h2 class="mini-title">{{ listing.mini_description}}</h2>
         <div class="mini-description-container">
             <ul>
-                <li class = 'basic-btn'>Брой гости - 3</li>
-                <li class = 'basic-btn'>Къмпинг 'Златна Рибка'</li>
-                <li class = 'basic-btn'>Каравани</li>
+                <li class = 'basic-btn'>Брой гости - {{ listing.max_people }}</li>
+                {% if listing.type == 'camper' %}
+                    <li class = 'basic-btn'>Каравани</li>
+                    <li class = 'basic-btn'>Къмпинг {{ listing.camping }}</li>
+
+                {% elif listing.type == 'bungalow'%}
+                    <li class = 'basic-btn'>Бунгала</li>
+                    <li class = 'basic-btn'>Къмпинг {{ listing.camping }}</li>
+                {% else %}
+                    <li class = 'basic-btn'>Апартаменти</li>
+                {% endif %}
             </ul>
             <div class="host">
-                <p>Отдаващ: Георги Георгиев</p>
+                <p>Отдаващ: {{ listing.owner.first_name }} {{ listing.owner.last_name }}</p>
                 <i class="fa-solid fa-circle-user"></i>
             </div>
         </div>
@@ -34,26 +41,22 @@
                 <hr>
                 <div class="listing-description">
                     <h2 class = 'mini-title'>Описание</h2>
-                    <p>Караваната под наем е идеалният начин да съчетаеш приключението с уюта на дома. Тя предлага напълно оборудвано пространство за спане, готвене и почивка, където и да се намираш. Можеш да избягаш от града и да се събудиш до морето, в гората или в планината. Без нужда от хотел или фиксирана локация, ти избираш ритъма и маршрута. Караваната ти дава свободата да пътуваш комфортно и стилно – на твои условия.</p>
+                    <p>{{ listing.description }}</p>
                 </div>
                 <hr>
                 <div class="listing-map-container">
                     <h2 class = 'mini-title'>Местоположение</h2>
                     <div id="map" class = 'listing-map'></div>
+                    <p class="hidden" id="lng">{{ listing.location.longitude }}</p>
+                    <p class="hidden" id="lat">{{ listing.location.latitude }}</p>
                 </div>
                 <hr>
                 <div class="amenity-container">
                     <h2 class = 'mini-title'>Удобства</h2>
                     <ul>
-                        <li>Домашни любимци</li>
-                        <li>Телевизор</li>
-                        <li>Тоалетна</li>
-                        <li>Бар</li>
-                        <li>Кухненски сектор</li>
-                        <li>Паркинг</li>
-                        <li>Баня</li>
-                        <li>Прибори</li>
-                        <li>Позволено за деца</li>
+                        {% for amenity in listing.amenities.all %}
+                            <li>{{ amenity}}</li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <hr>
@@ -233,4 +236,5 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'javascript/listing-page-map.js' %}"></script>
 {% endblock %}

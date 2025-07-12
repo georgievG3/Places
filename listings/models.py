@@ -51,6 +51,7 @@ class Listing(models.Model):
     rooms = models.PositiveIntegerField(null=True, blank=True)
     pets_allowed = models.BooleanField(default=False)
     min_nights = models.PositiveIntegerField(default=1)
+    max_people = models.PositiveIntegerField(default=1)
     square_meters = models.PositiveIntegerField(null=True, blank=True)
     amenities = models.ManyToManyField(Amenity, blank=True)
     description = models.TextField()
