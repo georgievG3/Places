@@ -65,7 +65,7 @@
                             <p class="recommended-container-price">от {{ listing.regular_price }}BGN</p>
                             <div class="recommended-container-info">
                                 <h3>{{ listing.title }}</h3>
-                                {% if listing.type == 'camper' or listing.type == 'bungalow' %}
+                                {% if listing.camping %}
                                     <p>{{ listing.camping }} / {{ listing.location.region }}</p>
                                 {% else %}
                                     <p>{{ listing.location.city }} / {{ listing.location.region }}</p>

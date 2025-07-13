@@ -15,8 +15,6 @@ class ListingDetailsView(DetailView):
     context_object_name = 'listing'
 
 
-
-
 class AddListingView(LoginRequiredMixin, CreateView):
     model = Listing
     form_class = AddListingForm
@@ -62,3 +60,7 @@ class AddListingView(LoginRequiredMixin, CreateView):
         )
 
 
+class UserListingsView(ListView):
+    model = Listing
+    template_name = 'listings/user-listings.html'
+    context_object_name = 'listings'

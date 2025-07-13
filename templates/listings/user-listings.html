@@ -1,0 +1,34 @@
+{% extends 'common/base.html' %}
+{% block content %}
+    <div class="user-listings">
+        {% for listing in listings %}
+            <a href="{% url 'listing-detail' listing.pk %}" class='user-listing-card'>
+                <img src="{{ listing.images.first.image.url }}" alt="">
+                <div class="listing-card-info">
+                    <h3>{{ listing.title }}</h3>
+                    <p class="listing-card-category">{{ listing.type }}</p>
+                </div>
+                <div class="listing-card-info">
+                    <p>Активна</p>
+                    <p>v</p>
+                </div>
+                <div class = 'listing-card-info'>
+                    <p>Разглеждания</p>
+                    <p>0</p>
+                </div>
+                <div class = 'listing-card-info'>
+                    <p>Харесвания</p>
+                    <p>0</p>
+                </div>
+                <div class = 'listing-card-info'>
+                    <p>Рейтинг</p>
+                    <p>0</p>
+                </div>
+                <div class = 'listing-card-info'>
+                    <p>Ревюта</p>
+                    <p>0</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

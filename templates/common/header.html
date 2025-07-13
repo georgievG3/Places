@@ -12,7 +12,16 @@
                 <li><a href="{% url 'index' %}">Категории</a></li>
                 <li><a href="{% url 'index' %}">Блог</a></li>
                 {% if request.user.is_authenticated%}
-                    <li><a href="{% url 'profile-details'%}">Акаунт</a></li>
+                    <li class = 'sub-navigation'>
+                        <a href="{% url 'profile-details'%}" class = 'sub-navigation-btn'>Акаунт</a>
+                        <div class="sub-navigation-options">
+                            <a href="{% url 'my-listings' %}">Моите места</a>
+                            <a href="{% url 'add-listing' %}">Добави място</a>
+                            <a href="">Резервации</a>
+                            <a href="">Харесани</a>
+                            <a href="">Профил</a>
+                        </div>
+                    </li>
                 {% else %}
                     <li><a href="{% url 'register'%}">Акаунт</a></li>
                 {% endif %}
@@ -23,7 +32,7 @@
     {% if user.is_authenticated %}
         <div class="header-right-container">
             <div class="header-add-listing-btn">
-                <a href="{% url 'add-listing' %}">Добави обява</a>
+                <a href="{% url 'add-listing' %}">Добави място</a>
             </div>
             <div class="header-sign-in-btn">
                 <form method = "post" action="{% url 'logout' %}">
