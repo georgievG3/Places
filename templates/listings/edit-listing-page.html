@@ -1,0 +1,132 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <form method = 'post' enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="add-listing-form">
+            <div class="add-listing-form-details">
+                <h1>Детайли за обявата</h1>
+                <hr>
+                <div class="listing-form-detail-info">
+                    <div class="listing-form-detail-input">
+                        {{ form.type.label_tag }}
+                        {{ form.type }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.camping.label_tag }}
+                        {{ form.camping }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.rooms.label_tag }}
+                        {{ form.rooms }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.min_nights.label_tag }}
+                        {{ form.min_nights }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.max_people.label_tag }}
+                        {{ form.max_people }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.square_meters.label_tag }}
+                        {{ form.square_meters }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.mini_description.label_tag }}
+                        {{ form.mini_description }}
+                    </div>
+                    <div class="listing-form-detail-input">
+                        {{ form.regular_price.label_tag }}
+                        {{ form.regular_price }}
+                    </div>
+                    <div class="listing-form-detail-input-pets">
+                        {{ form.pets_allowed.label_tag }}
+                        {{ form.pets_allowed }}
+                    </div>
+                </div>
+                <div class="listing-form-details-description">
+                    <label>Описание:</label>
+                    {{ form.description }}
+                </div>
+                <div class="listing-form-details-amenities">
+                    <label>Удобства:</label>
+                    {{ form.amenities }}
+                </div>
+            </div>
+            <div class="add-listing-form-details">
+                <h1>Сезонни цени</h1>
+                <hr>
+                {{ monthly_price_formset.management_form }}
+                {% for form in monthly_price_formset %}
+                    {{ form.id }}
+                    <div class="monthly-price-form">
+                        {{ form.month.label }} {{ form.month }}
+                        {% for error in form.month.errors %}
+                            <p style="color:red">{{ error }}</p>
+                        {% endfor %}
+                        {{ form.price.label }} {{ form.price }}
+                        {% for error in form.price.errors %}
+                            <p style="color:red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="add-listing-form-details">
+                <h1>Локация</h1>
+                <hr>
+                <div class="index-map-container">
+                    <div id="map" class = 'add-listing-map'>
+
+                    </div>
+                </div>
+                <div class="listing-form-details-location">
+                    <div class="listing-form-details-location-input">
+                        {{ location_form.region.label_tag }}
+                        {{ location_form.region }}
+                    </div>
+                    <div class="listing-form-details-location-input">
+                        {{ location_form.address.label_tag }}
+                        {{ location_form.address }}
+                    </div>
+                    <div class="listing-form-details-location-input">
+                        {{ location_form.city.label_tag }}
+                        {{ location_form.city }}
+                    </div>
+                    <div class="listing-form-details-location-input">
+                        {{ location_form.terrain_type.label_tag }}
+                        {{ location_form.terrain_type }}
+                    </div>
+                    {{ location_form.latitude }}
+                    {{ location_form.longitude }}
+                </div>
+            </div>
+            <div class="add-listing-form-details">
+                <h1>Снимки</h1>
+                <hr>
+                <div class="existing-images">
+                    {% for image in images %}
+                        <div class="images-box">
+                            <form method="post" action="{% url 'delete-listing-image' image.id %}"
+                                  style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn"
+                                        onclick="return confirm('Наистина ли искаш да изтриеш тази снимка?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                            <img src="{{ image.image.url }}" alt="" width="150" height="100px">
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="file" name="images" multiple>
+            </div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <script src="{% static 'javascript/add-listing-map.js' %}"></script>
+{% endblock %}

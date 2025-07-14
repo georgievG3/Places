@@ -1007,6 +1007,7 @@ input[type="submit"]{
     flex-direction: column;
     gap: 50px;
     background-color: rgba(228, 224, 224, 0.58);
+    padding-top: 50px;
 }
 
 .user-listing-card{
@@ -1014,16 +1015,18 @@ input[type="submit"]{
     align-items: center;
     justify-content: space-between;
     width: 70%;
-    padding: 10px 80px 10px 10px;
-    text-decoration: none;
+    padding: 15px 80px 15px 15px;
     color: #022c2c;
     background-color: white;
+    border-radius: 10px;
+    position: relative;
 }
 
 .user-listing-card img{
     width: 400px;
     height: 350px;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .listing-card-info{
@@ -1032,6 +1035,11 @@ input[type="submit"]{
     justify-content: center;
     flex-direction: column;
     gap: 20px;
+}
+
+.listing-card-info a{
+    text-decoration: none;
+    color: #022c2c;
 }
 
 .listing-card-info h3{
@@ -1047,4 +1055,36 @@ input[type="submit"]{
 
 .listing-card-info p:nth-of-type(1){
     font-size: 18px;
+}
+
+.user-listing-card i:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.user-listing-card i{
+    position: absolute;
+    right: 20px;
+    font-size: 21px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.listing-edit{
+    top: 20px;
+    color: #ffa600;
+}
+
+.listing-delete{
+    bottom: 20px;
+    color: #ed1212;
+}
+
+/*user edit page*/
+.existing-images{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
 }

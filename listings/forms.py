@@ -68,7 +68,10 @@ MonthlyPriceFormSet = inlineformset_factory(
     MonthlyPrice,
     form=MonthlyPriceForm,
     fields=['month', 'price'],
-    extra=5,
+    extra=0,
     can_delete=False
 )
 
+
+class EditListingForm(AddListingForm):
+    ...
