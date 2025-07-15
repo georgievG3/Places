@@ -7,7 +7,7 @@ from listings.models import Listing, Location, Amenity, Image, MonthlyPrice
 class AddListingForm(forms.ModelForm):
     class Meta:
         model = Listing
-        exclude = ('owner', 'location',)
+        exclude = ('owner', 'location', 'slug')
 
         widgets = {
             'amenities': forms.CheckboxSelectMultiple(),
@@ -64,6 +64,15 @@ class MonthlyPriceForm(forms.ModelForm):
 
 
 MonthlyPriceFormSet = inlineformset_factory(
+    Listing,
+    MonthlyPrice,
+    form=MonthlyPriceForm,
+    fields=['month', 'price'],
+    extra=5,
+    can_delete=False
+)
+
+MonthlyPriceFormSetEdit = inlineformset_factory(
     Listing,
     MonthlyPrice,
     form=MonthlyPriceForm,

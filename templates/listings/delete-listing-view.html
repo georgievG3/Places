@@ -1,11 +1,14 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
-  <h2>Сигурен ли си, че искаш да изтриеш "{{ object.title }}"?</h2>
+    <div class="delete-listing-page">
+        <h1>Сигурен ли си, че искаш да изтриеш "{{ object.title }}"?</h1>
 
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Да, изтрий</button>
-    <a href="{% url 'my-listings' %}">Отказ</a>
-  </form>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class = 'delete-listing-btn'><i class="fa-solid fa-trash"></i>Да, изтрий</button>
+            <a  class = 'delete-listing-btn cancel' href="{% url 'my-listings' %}">Отказ</a>
+        </form>
+        <img src="{{ listing.images.first.image.url }}" class = 'delete-listing-image' alt="">
+    </div>
 {% endblock %}

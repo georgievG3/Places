@@ -3,11 +3,11 @@
     <div class="user-listings">
         {% for listing in listings %}
             <div class='user-listing-card'>
-                <a href="{% url 'edit-listing' listing.pk %}"><i class="fa-solid fa-pen-to-square listing-edit"></i></a>
-                <a href="{% url 'delete-listing' listing.pk %}"><i class="fa-solid fa-trash listing-delete"></i></a>
+                <a href="{% url 'edit-listing' listing.slug %}"><i class="fa-solid fa-pen-to-square listing-edit"></i></a>
+                <a href="{% url 'delete-listing' listing.slug %}"><i class="fa-solid fa-trash listing-delete"></i></a>
                 <img src="{{ listing.images.first.image.url }}" alt="">
                 <div class="listing-card-info">
-                    <a href="{% url 'listing-detail' listing.pk %}"><h3>{{ listing.title }}</h3></a>
+                    <a href="{% url 'listing-detail' listing.slug %}"><h3>{{ listing.title }}</h3></a>
                     <p class="listing-card-category">{{ listing.type }}</p>
                 </div>
                 <div class="listing-card-info">

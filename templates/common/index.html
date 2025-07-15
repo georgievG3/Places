@@ -58,7 +58,7 @@
             </div>
             <div class="recommended-container-cards slider-container">
                 {% for listing in listings%}
-                    <a href="{% url 'listing-detail' listing.pk %}">
+                    <a href="{% url 'listing-detail' listing.slug %}">
                         <div class="recommended-container-card">
                             <div class="recommended-image-shadow"></div>
                             <img src="{{ listing.images.first.image.url }}" alt="recommended-img">

@@ -62,7 +62,7 @@
                 <h1>Сезонни цени</h1>
                 <hr>
                 {{ monthly_price_formset.management_form }}
-                {% for form in monthly_price_formset %}
+                {% for form in monthly_price_formset_edit %}
                     {{ form.id }}
                     <div class="monthly-price-form">
                         {{ form.month.label }} {{ form.month }}
@@ -116,7 +116,7 @@
                                 {% csrf_token %}
                                 <button type="submit" class="delete-btn"
                                         onclick="return confirm('Наистина ли искаш да изтриеш тази снимка?')">
-                                    <i class="fa-solid fa-trash"></i>
+                                    <i class="fa-solid fa-xmark"></i>
                                 </button>
                             </form>
                             <img src="{{ image.image.url }}" alt="" width="150" height="100px">
@@ -125,7 +125,10 @@
                 </div>
                 <input type="file" name="images" multiple>
             </div>
-            <button type="submit">Submit</button>
+            <button class="add-listing-btn" type="submit">РЕДАКТИРАЙ МЯСТО</button>
+{#            {% if form.errors %}#}
+{#                <div class="error">{{ form.errors }}</div>#}
+{#            {% endif %}#}
         </div>
     </form>
     <script src="{% static 'javascript/add-listing-map.js' %}"></script>
