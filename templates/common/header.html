@@ -15,7 +15,9 @@
                     <li class = 'sub-navigation'>
                         <a href="{% url 'profile-details'%}" class = 'sub-navigation-btn'>Акаунт</a>
                         <div class="sub-navigation-options">
-                            <a href="{% url 'my-listings' %}">Моите места</a>
+                            {% if request.user.is_partner %}
+                                <a href="{% url 'my-listings' %}">Моите места</a>
+                            {% endif %}
                             <a href="{% url 'add-listing' %}">Добави място</a>
                             <a href="">Резервации</a>
                             <a href="">Харесани</a>
