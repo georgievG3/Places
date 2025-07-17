@@ -1,0 +1,32 @@
+.fc-toolbar-title {
+  color: #2c3e50;
+  font-weight: bold;
+    font-size: 16px !important;
+}
+
+.fc .fc-button-primary{
+    padding: 5px;
+}
+
+#calendar {
+  width: 250px;
+  height: 250px;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.fc .fc-scrollgrid {
+  height: 100% !important;
+}
+
+.fc-daygrid-day-frame{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fc-daygrid-day-frame:hover{
+    background-color: #129990;
+    transition: 0.3s;
+}

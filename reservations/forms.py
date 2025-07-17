@@ -9,6 +9,16 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['check_in', 'check_out', 'full_name', 'phone', 'note']
 
+        widgets = {
+            'check_in': forms.TextInput(attrs={'readonly': 'readonly',}),
+            'check_out': forms.TextInput(attrs={'readonly': 'readonly'}),
+        }
+
+        labels = {
+            'check_in': 'Настаняване:',
+            'check_out': 'Напускане:',
+        }
+
 
     def __init__(self, *args, **kwargs):
         self.listing = kwargs.pop('listing', None)

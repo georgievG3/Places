@@ -18,11 +18,19 @@ def reserve_listing(request, slug):
             reservation.listing = listing
             reservation.save()
             return redirect('listing-detail', slug=slug)
-
     else:
-        form = ReservationForm(listing=listing)
+        check_in = request.GET.get('check_in')
+        check_out = request.GET.get('check_out')
+
+        initial_data = {}
+        if check_in and check_out:
+            initial_data = {'check_in': check_in, 'check_out': check_out}
+
+        form = ReservationForm(initial=initial_data, listing=listing)
 
     return render(request, 'reservations/reservation.html', {
         'form': form,
         'listing': listing,
+        'prefilled_check_in': check_in,
+        'prefilled_check_out': check_out,
     })

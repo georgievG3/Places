@@ -1,0 +1,22 @@
+#calendar {
+  width: 450px;
+  height: 450px;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+.fc .fc-scrollgrid {
+  height: 100% !important;
+}
+
+.fc-daygrid-day-frame{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fc-daygrid-day-frame:hover{
+    background-color: #129990;
+    transition: 0.3s;
+}

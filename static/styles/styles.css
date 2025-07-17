@@ -532,7 +532,7 @@ input[type="submit"]{
 /*LISTING PAGE*/
 
 .listing-page-container{
-    padding: 50px 200px 50px 200px;
+    padding: 50px 150px 50px 150px;
 }
 
 .listing-title-container{
@@ -608,6 +608,7 @@ input[type="submit"]{
     color: #022c2c;
     padding-bottom: 20px;
     padding-top: 10px;
+    font-size: 22px;
 }
 
 .mini-description-container ul{
@@ -679,12 +680,21 @@ input[type="submit"]{
     gap: 20px;
 }
 
+
 .reserve-btn{
     background-color: #129990;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.reserve-btn:hover{
+    background-color: #096B68;
+    transition: 0.3s;
 }
 
 .reservation-info{
@@ -1183,4 +1193,28 @@ input[type="submit"]{
 
 .delete-listing-image{
     width: 700px;
+}
+
+/*RESERVATION PAGE*/
+
+.reservation-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 20px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.chosen-days{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0 20px 0;
+}
+
+.chosen-days input{
+    padding: 5px;
 }
