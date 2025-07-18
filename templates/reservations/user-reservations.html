@@ -1,0 +1,41 @@
+{% extends 'common/base.html' %}
+{% block content %}
+    <div class="user-listings">
+        {% for reservation in reservations %}
+            <div class='user-listing-card'>
+{#                <a href="{% url 'edit-listing' listing.slug %}" class = 'listing-buttons listing-edit'><i class="fa-solid fa-pen-to-square"></i></a>#}
+{#                <a href="{% url 'delete-listing' listing.slug %}" class = 'listing-buttons listing-delete'><i class="fa-solid fa-trash"></i></a>#}
+                <img src="{{ reservation.listing.images.first.image.url }}" alt="">
+                <div class="user-listing-card-containers">
+                    <div class="user-listing-card-title-container">
+                        <div class="listing-card-info">
+                            <a href="{% url 'listing-detail' reservation.listing.slug %}"><h2>{{ reservation.listing.title }}</h2></a>
+                        </div>
+                    </div>
+                    <div class="user-listing-card-info-container">
+                        <div class="listing-card-info">
+                            <p>Настаняване:</p>
+                            <p>{{ reservation.check_in }}</p>
+                        </div>
+                        <div class='listing-card-info'>
+                            <p>Напускане:</p>
+                            <p>{{ reservation.check_out }}</p>
+                        </div>
+                        <div class='listing-card-info'>
+                            <p>Създадена на:</p>
+                            <p>{{ reservation.created_at }}</p>
+                        </div>
+                        <div class='listing-card-info'>
+                            <p>Брой гости:</p>
+                            <p>{{ reservation.guests }}</p>
+                        </div>
+                    </div>
+                    <div class='listing-card-info'>
+                        <p>Бележки:</p>
+                        <p>{{ reservation.note }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

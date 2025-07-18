@@ -15,6 +15,19 @@ class ListingDetailsView(DetailView):
     template_name = 'listings/listing-page.html'
     context_object_name = 'listing'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        listing = self.get_object()
+
+        images = listing.images.all()
+        mid_index = (len(images) + 1) // 2
+        first_half_images = images[:mid_index]
+        second_half_images = images[mid_index:]
+
+        context['first_half_images'] = first_half_images
+        context['second_half_images'] = second_half_images
+        return context
+
 
 class AddListingView(LoginRequiredMixin, CreateView):
     model = Listing
@@ -149,4 +162,3 @@ class UserListingsView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Listing.objects.filter(owner=self.request.user)
-

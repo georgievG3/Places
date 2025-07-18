@@ -580,6 +580,71 @@ input[type="submit"]{
     grid-row: span 2;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 40px 20px;
+}
+
+.modal-content {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    border-radius: 10px;
+    padding: 50px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+.close:hover {
+    color: black;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.modal-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 768px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.show-images-btn{
+    position: absolute;
+    top: 87%;
+    right: 10%;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
 .listing-container{
     display: flex;
     align-items: center;
@@ -1034,19 +1099,35 @@ input[type="submit"]{
     flex-direction: column;
     gap: 50px;
     background-color: rgba(228, 224, 224, 0.58);
-    padding-top: 50px;
+    padding: 50px 0 50px 0;
 }
 
 .user-listing-card{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 70%;
+    gap: 50px;
     padding: 15px 80px 15px 15px;
     color: #022c2c;
     background-color: white;
     border-radius: 10px;
     position: relative;
+}
+
+.user-listing-card-containers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-listing-card-info-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .user-listing-card img{
@@ -1089,7 +1170,7 @@ input[type="submit"]{
     transition: 0.3s;
 }
 
-.user-listing-card i{
+.listing-buttons{
     position: absolute;
     right: 20px;
     font-size: 21px;
@@ -1201,10 +1282,18 @@ input[type="submit"]{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin-top: 50px;
-    gap: 20px;
+    gap: 50px;
     margin-bottom: 50px;
     position: relative;
+}
+
+.reservation-containers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
 }
 
 .chosen-days{
@@ -1217,4 +1306,31 @@ input[type="submit"]{
 
 .chosen-days input{
     padding: 5px;
+}
+
+.reservation-container h1 a{
+    text-decoration: none;
+    color: #096B68;
+}
+
+.reservation-info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.reservation-info input, textarea{
+    padding: 10px;
+    resize: none;
+}
+
+.reservation-container button[type='submit']{
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    margin-top: 50px;
+    text-transform: uppercase;
 }

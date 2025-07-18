@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+{% block content %}
+    <div class="listing-images-hidden-grid">
+        <div class="listing-column">
+            {% for image in first_half_images %}
+                <img src="{{ image.image.url }}" alt="">
+            {% endfor %}
+        </div>
+        <div class="listing-column">
+            {% for image in second_half_images %}
+                <img src="{{ image.image.url }}" alt="">
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

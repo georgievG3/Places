@@ -7,30 +7,33 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
 
     <div class="reservation-container">
-        <h1>Резервирай: {{ listing.title }}</h1>
+        <h1>Резервирай: <a href="{% url 'listing-detail' listing.slug %}">{{ listing.title }}</a></h1>
 
-        <div class="reservation-caontainer-left">
-            <div id="calendar" style="max-width: 800px; margin-bottom: 30px;"></div>
-        </div>
+        <div class="reservation-containers">
+            <div class="reservation-container-left">
+                <div id="calendar" style="max-width: 800px; margin-bottom: 30px;"></div>
+            </div>
 
-        <div class="reservation-container-right">
-            <form method="post">
-                {% csrf_token %}
-                <h2>Избрани дати: </h2>
-                <div class="chosen-days">
-                    {{ form.check_in.label }} {{ form.check_in }}
-                    {{ form.check_out.label }} {{ form.check_out }}
-                </div>
+            <div class="reservation-container-right">
+                <form method="post">
+                    {% csrf_token %}
+                    <h2>Избрани дати: </h2>
+                    <div class="chosen-days">
+                        {{ form.check_in.label }} {{ form.check_in }}
+                        {{ form.check_out.label }} {{ form.check_out }}
+                    </div>
 
-                <h2>Вашите данни:</h2>
-                <div class="reservation-info">
-                    {{ form.full_name.label }} {{ form.full_name }}
-                    {{ form.phone.label }} {{ form.phone }}
-                    {{ form.note.label }} {{ form.note }}
-                </div>
+                    <h2>Вашите данни:</h2>
+                    <div class="reservation-info">
+                        {{ form.full_name.label }} {{ form.full_name }}
+                        {{ form.phone.label }} {{ form.phone }}
+                        {{ form.guests.label }} {{ form.guests }}
+                        {{ form.note.label }} {{ form.note }}
+                    </div>
 
-                <button type="submit">Резервирай</button>
-            </form>
+                    <button type="submit" class = 'basic-btn'>Резервирай</button>
+                </form>
+            </div>
         </div>
     </div>
 

@@ -18,6 +18,28 @@
             {% for image in listing.images.all|slice:"1:5" %}
                 <img src="{{ image.image.url }}" alt="">
             {% endfor %}
+        <button id="open-gallery-btn" class="show-images-btn basic-btn">Виж всички снимки</button>
+        </div>
+        <div id="image-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <div class="modal-grid">
+                    <div class="listing-column">
+                        {% for image in first_half_images %}
+                            <a href="{{ image.image.url }}">
+                                <img src="{{ image.image.url }}" alt="">
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="listing-column">
+                        {% for image in second_half_images %}
+                            <a href="{{ image.image.url }}">
+                                <img src="{{ image.image.url }}" alt="">
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
         <h2 class="mini-title">{{ listing.mini_description}}</h2>
         <div class="mini-description-container">

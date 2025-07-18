@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from listings.models import Listing
@@ -11,6 +12,7 @@ class Reservation(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reservations')
     check_in = models.DateTimeField()
     check_out = models.DateTimeField()
+    guests = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
 
     full_name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)

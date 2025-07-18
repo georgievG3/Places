@@ -1,13 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView
 
 from listings.models import Listing
 from reservations.forms import ReservationForm
+from reservations.models import Reservation
 
 
 # Create your views here.
 @login_required
-def reserve_listing(request, slug):
+def reserve_listing_view(request, slug):
     listing = get_object_or_404(Listing, slug=slug)
 
     if request.method == "POST":
@@ -34,3 +36,14 @@ def reserve_listing(request, slug):
         'prefilled_check_in': check_in,
         'prefilled_check_out': check_out,
     })
+
+
+class UserReservationsView(ListView):
+    model = Reservation
+    template_name = 'reservations/user-reservations.html'
+    context_object_name = 'reservations'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
