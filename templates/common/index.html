@@ -23,25 +23,25 @@
                 <hr class = 'title-hr'>
             </div>
             <div class="category-container">
-                <a href="">
+                <a href="{% url 'listings_by_category' listing_type='camper' %}">
                     <div class="category-container-card">
                     <p>Каравани</p>
                     <img src='{% static 'images/caravan-1858357_1920.jpg' %}' alt="caravan-image">
                 </div>
                 </a>
-                <a href="">
+                <a href="{% url 'listings_by_category' listing_type='camping' %}">
                     <div class="category-container-card">
                     <p>Къмпинги</p>
                     <img src="{% static 'images/seaview-970918_1920.jpg' %}" alt="camping-image">
                 </div>
                 </a>
-                <a href="">
+                <a href="{% url 'listings_by_category' listing_type='apartment' %}">
                     <div class="category-container-card">
                     <p>Апартаменти</p>
                     <img src="{% static 'images/building-6776335_1920.jpg' %}" alt="apartment-image">
                 </div>
                 </a>
-                <a href="">
+                <a href="{% url 'listings_by_category' listing_type='bungalow' %}">
                     <div class="category-container-card">
                     <p>Бунгала</p>
                     <img src="{% static 'images/aerial-1373406_1920.jpg' %}" alt="bungalow-image">
@@ -50,8 +50,13 @@
             </div>
         </div>
         <div class="index-recommended-container">
-            <h1>Предпочитани</h1>
-            <hr class = 'title-hr'>
+            <div class="category-container-title">
+                <h1>Предпочитани</h1>
+                <p class="category-container-description">
+                    Вижте най-желаните места!
+                </p>
+                <hr class = 'title-hr'>
+            </div>
             <div class="listing-reviews-buttons">
                 <button class="pre-btn"><i class="fa-solid fa-angle-left"></i></button>
                 <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>

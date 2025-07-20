@@ -2,17 +2,17 @@
 {% block content %}
     <div class="user-listings">
         {% for listing in pending_listings %}
-            <div class='user-listing-card'>
+            <div class='user-listing-card pending-card'>
                 <a href="{% url 'review-listing' listing.slug %}" class = 'listing-buttons listing-edit' style="color: cornflowerblue"><i class="fa-solid fa-eye"></i></a>
-                <form method="post" action="{% url 'approve-listing' listing.slug %}">
+                <form method="post" action="{% url 'approve-listing' listing.slug %}" class = 'approve-listing-form'>
                     {% csrf_token %}
-                    <button class = 'listing-buttons listing-delete' style="color: green" type="submit"><i class="fa-solid fa-circle-check"></i></button>
+                    <button style="color: green" type="submit"><i class="fa-solid fa-circle-check"></i></button>
                 </form>
                 <img src="{{ listing.images.first.image.url }}" alt="">
                 <div class="user-listing-card-containers">
                     <div class="user-listing-card-title-container">
                         <div class="listing-card-info">
-                            <a href="{% url 'listing-detail' listing.slug %}"><h3>{{ listing.title }}</h3></a>
+                            <a href="{% url 'review-listing' listing.slug %}"><h3>{{ listing.title }}</h3></a>
                             <p class="listing-card-category">{{ listing.type }}</p>
                         </div>
                     </div>

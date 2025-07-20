@@ -9,7 +9,15 @@
         <div class="header-navigation">
             <ul class="header-ul">
                 <li><a href="{% url 'index' %}">Начало</a></li>
-                <li><a href="{% url 'index' %}">Категории</a></li>
+                <li class='sub-navigation'>
+                    <a href="{% url 'index' %}" class='sub-navigation-btn'>Категории</a>
+                    <div class="sub-navigation-options">
+                        <a href="{% url 'listings_by_category' listing_type='camper' %}">Каравани</a>
+                        <a href="{% url 'listings_by_category' listing_type='camping' %}">Къмпинги</a>
+                        <a href="{% url 'listings_by_category' listing_type='apartment' %}">Апартаменти</a>
+                        <a href="{% url 'listings_by_category' listing_type='bungalow' %}">Бунгала</a>
+                    </div>
+                </li>
                 <li><a href="{% url 'index' %}">Блог</a></li>
                 {% if is_authenticated%}
                     {% if is_staff %}

@@ -113,11 +113,10 @@
                         </div>
                     {% endfor %}
                 </div>
-                <input type="file" name="images" multiple>
             </div>
-            <form method="post" action="{% url 'approve-listing' listing.slug %}">
+            <form method="post" action="{% url 'approve-listing' listing.slug %}" class = 'approve-listing-button'>
                 {% csrf_token %}
-                <button class="add-listing-btn" type="submit">РЕДАКТИРАЙ МЯСТО</button>
+                <button class="add-listing-btn" type="submit">ОДОБРИ МЯСТО</button>
             </form>
             {#            {% if form.errors %}#}
             {#                <div class="error">{{ form.errors }}</div>#}

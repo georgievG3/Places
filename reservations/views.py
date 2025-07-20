@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DeleteView
 
 from listings.models import Listing
 from reservations.forms import ReservationForm
@@ -47,3 +49,15 @@ class UserReservationsView(ListView):
 
     def get_queryset(self):
         return Reservation.objects.filter(user=self.request.user)
+
+
+class UserReservationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Reservation
+    template_name = 'reservations/delete-reservation.html'
+    success_url = reverse_lazy('my_reservations')
+    slug_field = 'pk'
+    slug_url_kwarg = 'pk'
+    context_object_name = 'reservation'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)

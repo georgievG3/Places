@@ -163,3 +163,15 @@ class UserListingsView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Listing.objects.filter(owner=self.request.user)
+
+
+class ListingsByCategoryView(ListView):
+    model = Listing
+    template_name = 'listings/listings-by-category.html'
+    context_object_name = 'listings'
+
+    def get_queryset(self):
+        return Listing.objects.filter(
+            type=self.kwargs['listing_type'],
+            is_approved=True
+        )

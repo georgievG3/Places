@@ -23,11 +23,24 @@ class ReviewListingView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['readonly'] = True
-        context['form'] = AddListingForm(instance=self.object)
-        context['location_form'] = AddListingLocationForm(instance=self.object.location)
-        context['monthly_price_formset_edit'] = MonthlyPriceFormSet(instance=self.object)
+        form = AddListingForm(instance=self.object)
+        for field in form.fields.values():
+            field.disabled = True
+        context['form'] = form
+
+        location_form = AddListingLocationForm(instance=self.object.location)
+        for field in location_form.fields.values():
+            field.disabled = True
+        context['location_form'] = location_form
+
+        formset = MonthlyPriceFormSet(instance=self.object)
+        for form in formset.forms:
+            for field in form.fields.values():
+                field.disabled = True
+        context['monthly_price_formset_edit'] = formset
+
         context['images'] = self.object.images.all()
+
         return context
 
 
@@ -37,5 +50,5 @@ class ApproveListingView(View):
         listing = Listing.objects.get(slug=slug)
         listing.is_approved = True
         listing.save()
-        return redirect('index')
+        return redirect('pending_listings')
 

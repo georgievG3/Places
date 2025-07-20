@@ -532,7 +532,7 @@ input[type="submit"]{
 /*LISTING PAGE*/
 
 .listing-page-container{
-    padding: 50px 150px 50px 150px;
+    padding: 50px 170px 50px 170px;
 }
 
 .listing-title-container{
@@ -637,7 +637,7 @@ input[type="submit"]{
 
 .show-images-btn{
     position: absolute;
-    top: 87%;
+    top: 80%;
     right: 10%;
     border: none;
     padding: 10px;
@@ -730,7 +730,7 @@ input[type="submit"]{
     width: 25%;
     position: sticky;
     top: 50vh;
-    transform: translateY(-30vh);
+    transform: translateY(-25vh);
 }
 
 .listing-social-sticky-container{
@@ -741,6 +741,7 @@ input[type="submit"]{
     padding: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 20px;
 }
@@ -1333,4 +1334,86 @@ input[type="submit"]{
     font-size: 16px;
     margin-top: 50px;
     text-transform: uppercase;
+}
+
+/*approve listing*/
+.approve-listing-form{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.approve-listing-form button{
+    border: none;
+    background-color: transparent;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.pending-card {
+    width: 50%;
+}
+
+.approve-listing-button{
+    align-self: center;
+}
+
+/*LISTINGS BY CATEGORY PAGE*/
+
+.listing-by-category-container{
+    display: flex;
+    overflow: hidden;
+}
+
+.category-map-container{
+    width: 50%;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.category-search-results{
+    width: 50%;
+    height: auto;
+    overflow-y: scroll;
+    padding: 1rem;
+}
+
+.category-map{
+    height: 100% !important;
+}
+
+.category-search-inputs{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    gap: 20px;
+}
+
+.category-search-inputs-calendar{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.category-search-inputs input{
+    padding: 20px 5px 20px 10px;
+    width: 100%;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.category-search-calendar{
+    width: 40%;
+}
+
+.category-results{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 30px;
+    gap: 30px;
 }

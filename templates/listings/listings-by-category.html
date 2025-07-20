@@ -1,0 +1,53 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+    <div class="listing-by-category-container">
+        <div class="category-map-container">
+            <div id="map" class = 'category-map'></div>
+        </div>
+        <div class="category-search-results">
+            <div class="category-search">
+                <div class="category-search-inputs-calendar">
+                    <div class="category-search-inputs">
+                        <h2>Филтри:</h2>
+                        <input type="text" placeholder="Търси по име">
+                        <input type="text" placeholder="Макс. брой хора">
+                        <input type="text" placeholder="Град">
+                    </div>
+                    <div class="category-search-calendar">
+                        <div id="calendar"></div>
+                        <input type="hidden" id="check-in">
+                        <input type="hidden" id="check-out">
+                    </div>
+{#                    <div class="category-amenity-search">#}
+{#                        #}
+{#                    </div>#}
+                </div>
+            </div>
+            <h2>Резултати:</h2>
+            <div class="category-results">
+                {% for listing in listings %}
+                    <a href="{% url 'listing-detail' listing.slug %}">
+                        <div class="recommended-container-card">
+                            <div class="recommended-image-shadow"></div>
+                            <img src="{{ listing.images.first.image.url }}" alt="recommended-img">
+                            <p class="recommended-container-price">от {{ listing.regular_price }}BGN</p>
+                            <div class="recommended-container-info">
+                                <h3>{{ listing.title }}</h3>
+                                {% if listing.camping %}
+                                    <p>{{ listing.camping }} / {{ listing.location.region }}</p>
+                                {% else %}
+                                    <p>{{ listing.location.city }} / {{ listing.location.region }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'javascript/listings-by-category-map.js' %}"></script>
+    <script src="{% static 'javascript/reservation-calendar.js' %}"></script>
+{% endblock %}
