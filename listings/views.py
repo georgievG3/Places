@@ -52,6 +52,7 @@ class AddListingView(LoginRequiredMixin, CreateView):
             listing = form.save(commit=False)
             listing.owner = request.user
             listing.location = location
+            listing.is_approved = False
             listing.save()
             form.save_m2m()
 

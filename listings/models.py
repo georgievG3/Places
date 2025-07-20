@@ -60,6 +60,7 @@ class Listing(models.Model):
     regular_price = models.DecimalField(max_digits=8, decimal_places=2)
     owner = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='listings')
     slug = models.SlugField(unique=True)
+    is_approved = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:

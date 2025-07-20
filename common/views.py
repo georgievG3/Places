@@ -12,6 +12,6 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['listings'] = Listing.objects.all()[:12]
+        context['listings'] = Listing.objects.filter(is_approved = True)[:12]
 
         return context

@@ -11,32 +11,43 @@
                 <li><a href="{% url 'index' %}">Начало</a></li>
                 <li><a href="{% url 'index' %}">Категории</a></li>
                 <li><a href="{% url 'index' %}">Блог</a></li>
-                {% if request.user.is_authenticated%}
-                    <li class = 'sub-navigation'>
-                        <a href="{% url 'profile-details'%}" class = 'sub-navigation-btn'>Акаунт</a>
-                        <div class="sub-navigation-options">
-                            {% if request.user.is_partner %}
+                {% if is_authenticated%}
+                    {% if is_staff %}
+                        <li class='sub-navigation'>
+                            <a href="" class='sub-navigation-btn'>Админ панел</a>
+                            <div class="sub-navigation-options">
+                                <a href="{% url 'pending_listings' %}">Изчакващи обяви</a>
+                            </div>
+                        </li>
+                    {% elif is_partner %}
+                        <li class='sub-navigation'>
+                            <a href="{% url 'profile-details' %}" class='sub-navigation-btn'>Акаунт</a>
+                            <div class="sub-navigation-options">
                                 <a href="{% url 'my-listings' %}">Моите места</a>
                                 <a href="{% url 'add-listing' %}">Добави място</a>
                                 <a href="{% url 'my_reservations' %}">Резервации</a>
                                 <a href="">Харесани</a>
                                 <a href="{% url 'profile-details' %}">Профил</a>
-                            {% else %}
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class='sub-navigation'>
+                            <a href="{% url 'profile-details' %}" class='sub-navigation-btn'>Акаунт</a>
+                            <div class="sub-navigation-options">
                                 <a href="{% url 'add-listing' %}">Добави място</a>
                                 <a href="{% url 'my_reservations' %}">Резервирани</a>
                                 <a href="">Харесани</a>
                                 <a href="{% url 'profile-details' %}">Профил</a>
-                            {% endif %}
-                        </div>
-                    </li>
+                            </div>
+                        </li>
+                    {% endif %}
                 {% else %}
                     <li><a href="{% url 'register'%}">Акаунт</a></li>
                 {% endif %}
-
             </ul>
         </div>
     </div>
-    {% if user.is_authenticated %}
+    {% if is_authenticated %}
         <div class="header-right-container">
             <div class="header-add-listing-btn">
                 <a href="{% url 'add-listing' %}">Добави място</a>

@@ -7,7 +7,7 @@ from listings.models import Listing, Location, Amenity, Image, MonthlyPrice
 class AddListingForm(forms.ModelForm):
     class Meta:
         model = Listing
-        exclude = ('owner', 'location', 'slug')
+        exclude = ('owner', 'location', 'slug', 'is_approved')
 
         widgets = {
             'amenities': forms.CheckboxSelectMultiple(),
