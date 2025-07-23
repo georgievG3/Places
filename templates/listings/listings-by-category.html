@@ -5,26 +5,52 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
     <div class="listing-by-category-container">
         <div class="category-map-container">
-            <div id="map" class = 'category-map'></div>
+            <div id="map" class='category-map'></div>
         </div>
         <div class="category-search-results">
-            <div class="category-search">
-                <div class="category-search-inputs-calendar">
+        <button id="filters-toggle-btn" class="filters-btn"><i class="fa-solid fa-sort"></i>Филтри</button>
+            <div id="filters-modal" class="filters-modal hidden">
+                <form method="get" id="filters-form" class="filters-content">
+                    <h2>Филтрирай резултатите:</h2>
                     <div class="category-search-inputs">
-                        <h2>Филтри:</h2>
-                        <input type="text" placeholder="Търси по име">
-                        <input type="text" placeholder="Макс. брой хора">
-                        <input type="text" placeholder="Град">
+                        {{ form.name }}
+                        {{ form.max_people }}
+                        {{ form.city }}
                     </div>
+                    <h2>Избери дати:</h2>
                     <div class="category-search-calendar">
                         <div id="calendar"></div>
-                        <input type="hidden" id="check-in">
-                        <input type="hidden" id="check-out">
+                        {{ form.check_in }}
+                        {{ form.check_out }}
                     </div>
-{#                    <div class="category-amenity-search">#}
-{#                        #}
-{#                    </div>#}
-                </div>
+
+                    <div class="category-amenities-container">
+                        <h2>Удобства:</h2>
+                        <div class="category-amenities">
+                            {{ form.amenities }}
+                        </div>
+                    </div>
+
+                    <div class="filters-section">
+                        <h2>Цена (на вечер)</h2>
+                        <input
+                                type="range"
+                                min="10"
+                                max="1000"
+                                step="5"
+                                name="price_max"
+                                id="price-range"
+                                value="{{ form.price_max.value|default:500 }}"
+                        >
+                        <p>До <span id="price-value">{{ form.price_max.value|default:"500" }}</span> лв.</p>
+                    </div>
+                    <div class="filters-form-buttons">
+                        <a href="{% url 'listings_by_category' listing_type=listing_type %}" class="clear-filters-btn">
+                            Изчисти филтрите
+                        </a>
+                        <button type="submit" class="add-listing-btn">Приложи</button>
+                    </div>
+                </form>
             </div>
             <h2>Резултати:</h2>
             <div class="category-results">
@@ -48,6 +74,9 @@
             </div>
         </div>
     </div>
+    <script>
+        const listingLocations = {{ listing_locations|safe }};
+    </script>
     <script src="{% static 'javascript/listings-by-category-map.js' %}"></script>
     <script src="{% static 'javascript/reservation-calendar.js' %}"></script>
 {% endblock %}

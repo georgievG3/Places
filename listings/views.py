@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from listings.forms import AddListingForm, AddListingLocationForm, AddListingAmenityForm, MonthlyPriceFormSet, \
-    EditListingForm, MonthlyPriceFormSetEdit
-from listings.models import Listing, Image
+    EditListingForm, MonthlyPriceFormSetEdit, ListingFilterForm
+from listings.models import Listing, Image, Amenity
 
 
 # Create your views here.
@@ -171,7 +171,51 @@ class ListingsByCategoryView(ListView):
     context_object_name = 'listings'
 
     def get_queryset(self):
-        return Listing.objects.filter(
+        queryset = Listing.objects.filter(
             type=self.kwargs['listing_type'],
             is_approved=True
         )
+        form = ListingFilterForm(self.request.GET or None)
+
+        if form.is_valid():
+            check_in = form.cleaned_data.get('check_in')
+            check_out = form.cleaned_data.get('check_out')
+
+            if check_in and check_out:
+                queryset = queryset.exclude(
+                    reservations__check_in__lt=check_out,
+                    reservations__check_out__gt=check_in
+                )
+
+            if form.cleaned_data.get('name'):
+                queryset = queryset.filter(title__icontains=form.cleaned_data['name'])
+            if form.cleaned_data.get('max_people'):
+                queryset = queryset.filter(max_people__gte=form.cleaned_data['max_people'])
+            if form.cleaned_data.get('city'):
+                queryset = queryset.filter(location__city__icontains=form.cleaned_data['city'])
+            if form.cleaned_data.get('amenities'):
+                for amenity in form.cleaned_data['amenities']:
+                    queryset = queryset.filter(amenities=amenity)
+            if form.cleaned_data.get('price_max'):
+                queryset = queryset.filter(regular_price__lte=form.cleaned_data['price_max'])
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['amenities'] = Amenity.objects.all()
+        context['form'] = ListingFilterForm(self.request.GET or None)
+        context['listing_type'] = self.kwargs['listing_type']
+        context['listing_locations'] = [
+            {
+                'title': listing.title,
+                'lat': listing.location.lat,
+                'lng': listing.location.lng,
+                'slug': listing.slug,
+                'price': listing.regular_price,
+                'image': listing.images.first().image.url if listing.images.exists() else ''
+            }
+            for listing in context['listings']
+            if listing.location.latitude and listing.longitude
+        ]
+        return context

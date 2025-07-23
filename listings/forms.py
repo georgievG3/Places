@@ -84,3 +84,30 @@ MonthlyPriceFormSetEdit = inlineformset_factory(
 
 class EditListingForm(AddListingForm):
     ...
+
+
+class ListingFilterForm(forms.Form):
+    name = forms.CharField(
+        required=False, label='Име',
+        widget=forms.TextInput(attrs={'placeholder': 'Търси по име'})
+    )
+    max_people = forms.IntegerField(
+        required=False, min_value=1, label='Макс. брой хора',
+        widget=forms.NumberInput(attrs={'placeholder': 'Максимален брой хора'})
+    )
+    city = forms.CharField(
+        required=False, label='Град',
+        widget=forms.TextInput(attrs={'placeholder': 'Град'})
+    )
+    amenities = forms.ModelMultipleChoiceField(
+        queryset=Amenity.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        label='Удобства'
+    )
+    price_max = forms.IntegerField(
+        required=False, min_value=10, max_value=1000, label='Максимална цена',
+        widget=forms.NumberInput()
+    )
+    check_in = forms.DateField(required=False, widget=forms.HiddenInput())
+    check_out = forms.DateField(required=False, widget=forms.HiddenInput())

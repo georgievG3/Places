@@ -33,4 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 modal.style.display = "none";
             }
         });
+
     });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const priceRange = document.getElementById('price-range');
+    const priceValue = document.getElementById('price-value');
+
+    if(priceRange && priceValue){
+        priceRange.addEventListener('input', () => {
+            priceValue.textContent = priceRange.value;
+        });
+    }
+});

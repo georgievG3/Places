@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const calendar = new FullCalendar.Calendar(calendarEl, {
+    window.calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
         selectable: false,
         validRange: function() {
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
-    calendar.render();
+    window.calendar.render();
 
     if (pageType === "listing" && reserveBtn) {
         reserveBtn.addEventListener("click", function (e) {
@@ -144,4 +144,29 @@ document.addEventListener("DOMContentLoaded", function () {
             highlightSelection(calendar, prefillCheckIn, prefillCheckOut);
         }
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("filters-toggle-btn");
+    const filtersModal = document.getElementById("filters-modal");
+    const filtersContent = document.querySelector(".filters-content");
+
+    if (!toggleBtn || !filtersModal || !filtersContent) return;
+
+    toggleBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        filtersModal.classList.toggle("hidden");
+
+        if (window.calendar && typeof window.calendar.updateSize === "function") {
+            window.calendar.updateSize();
+        }
+    });
+
+    filtersContent.addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
+
+    filtersModal.addEventListener("click", function () {
+        filtersModal.classList.add("hidden");
+    });
 });
