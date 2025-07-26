@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+{% block content %}
+    <div class="add-blog-post-container">
+        <form method="post" enctype="multipart/form-data" class = 'add-blog-post-form'>
+            {% csrf_token %}
+            <h1>Добави блог пост</h1>
+            {{ form.as_p }}
+
+            <div id="blocks-formset">
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    <div class="block-form">
+                        {{ form.as_p }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="add-blog-btns">
+                <button type="button" id="add-block">Добави блок</button>
+                <button type="submit" class='add-listing-btn' id='add-block-btn'>Запази</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

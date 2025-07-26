@@ -82,48 +82,27 @@
             </div>
         </div>
         <div class="index-blog-container">
-            <h1>Блог</h1>
-            <hr class = 'title-hr'>
+            <div class="category-container-title">
+                <h1>Блог</h1>
+                <p class="category-container-description">
+                    Нашият блог!
+                </p>
+                <hr class = 'title-hr'>
+            </div>
             <div class="listing-reviews-buttons">
                 <button class="pre-btn"><i class="fa-solid fa-angle-left"></i></button>
                 <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>
             </div>
             <div class="blog-container-cards slider-container">
-                <div class="blog-card">
-                    <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
-                    <h3>Интересна новина</h3>
-                    <p class = 'blog-card-info'>Караваната под наем предлага удобство и свобода за почивка сред природата или край морето. Напълно оборудвана, тя е перфектен избор за уютно бягство с усещане за дом, където и да сте.</p>
-                    <p class = 'blog-card-date'>22.06.2025</p>
-                    <button class = 'basic-btn'>Прочети повече</button>
-                </div>
-                <div class="blog-card">
-                    <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
-                    <h3>Интересна новина</h3>
-                    <p class = 'blog-card-info'>Караваната под наем предлага удобство и свобода за почивка сред природата или край морето. Напълно оборудвана, тя е перфектен избор за уютно бягство с усещане за дом, където и да сте.</p>
-                    <p class = 'blog-card-date'>22.06.2025</p>
-                    <button class = 'basic-btn'>Прочети повече</button>
-                </div>
-                <div class="blog-card">
-                    <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
-                    <h3>Интересна новина</h3>
-                    <p class = 'blog-card-info'>Караваната под наем предлага удобство и свобода за почивка сред природата или край морето. Напълно оборудвана, тя е перфектен избор за уютно бягство с усещане за дом, където и да сте.</p>
-                    <p class = 'blog-card-date'>22.06.2025</p>
-                    <button class = 'basic-btn'>Прочети повече</button>
-                </div>
-                <div class="blog-card">
-                    <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
-                    <h3>Интересна новина</h3>
-                    <p class = 'blog-card-info'>Караваната под наем предлага удобство и свобода за почивка сред природата или край морето. Напълно оборудвана, тя е перфектен избор за уютно бягство с усещане за дом, където и да сте.</p>
-                    <p class = 'blog-card-date'>22.06.2025</p>
-                    <button class = 'basic-btn'>Прочети повече</button>
-                </div>
-                <div class="blog-card">
-                    <img src="{% static 'images/skines_veta.jpg' %}" alt="blog-card-img">
-                    <h3>Интересна новина</h3>
-                    <p class = 'blog-card-info'>Караваната под наем предлага удобство и свобода за почивка сред природата или край морето. Напълно оборудвана, тя е перфектен избор за уютно бягство с усещане за дом, където и да сте.</p>
-                    <p class = 'blog-card-date'>22.06.2025</p>
-                    <button class = 'basic-btn'>Прочети повече</button>
-                </div>
+                {% for blog in blog_posts %}
+                    <div class="blog-card">
+                        <img src="{{ blog.blocks.first.image.url }}" alt="blog-card-img">
+                        <h3>{{ blog.title }}</h3>
+                        <p class='blog-card-info'>{{ blog.blocks.first.text|truncatewords:50 }}</p>
+                        <p class='blog-card-date'>{{ blog.created_at }}</p>
+                        <a href="{% url 'blog-post' blog.slug %}" class = 'basic-btn'>Прочети повече</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div class="index-info-container">

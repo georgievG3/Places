@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
+from admin_panel.forms import  BlogPostForm, BlogPostBlockFormSet
 from listings.forms import AddListingForm, AddListingLocationForm, MonthlyPriceFormSet
 from listings.models import Listing
 
@@ -51,4 +53,26 @@ class ApproveListingView(View):
         listing.is_approved = True
         listing.save()
         return redirect('pending_listings')
+
+
+def create_blog_post(request):
+    if request.method == "POST":
+        form = BlogPostForm(request.POST)
+        formset = BlogPostBlockFormSet(request.POST, request.FILES)
+        if form.is_valid() and formset.is_valid():
+            blog_post = form.save(commit=False)
+            blog_post.save()
+            blocks = formset.save(commit=False)
+            for block in blocks:
+                block.blog_post = blog_post
+                block.save()
+            return redirect('index')
+    else:
+        form = BlogPostForm()
+        formset = BlogPostBlockFormSet()
+
+    return render(request, 'admin_panel/add-blog-post.html', {
+        'form': form,
+        'formset': formset
+    })
 

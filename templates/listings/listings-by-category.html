@@ -75,7 +75,7 @@
         </div>
     </div>
     <script>
-        const listingLocations = {{ listing_locations|safe }};
+        const listingLocations = {{ listing_locations|default:"[]"|safe }};
     </script>
     <script src="{% static 'javascript/listings-by-category-map.js' %}"></script>
     <script src="{% static 'javascript/reservation-calendar.js' %}"></script>

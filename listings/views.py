@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -206,16 +208,16 @@ class ListingsByCategoryView(ListView):
         context['amenities'] = Amenity.objects.all()
         context['form'] = ListingFilterForm(self.request.GET or None)
         context['listing_type'] = self.kwargs['listing_type']
-        context['listing_locations'] = [
+        context['listing_locations'] = json.dumps([
             {
                 'title': listing.title,
-                'lat': listing.location.lat,
-                'lng': listing.location.lng,
+                'lat': listing.location.latitude,
+                'lng': listing.location.longitude,
                 'slug': listing.slug,
-                'price': listing.regular_price,
+                'price': float(listing.regular_price),
                 'image': listing.images.first().image.url if listing.images.exists() else ''
             }
             for listing in context['listings']
-            if listing.location.latitude and listing.longitude
-        ]
+            if listing.location and listing.location.latitude and listing.location.longitude
+        ])
         return context

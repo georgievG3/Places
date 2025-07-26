@@ -46,3 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.getElementById('add-block').addEventListener('click', function () {
+        const formsetDiv = document.getElementById('blocks-formset');
+        const totalForms = document.getElementById('id_blocks-TOTAL_FORMS');
+        const currentForms = parseInt(totalForms.value);
+
+        const newForm = formsetDiv.querySelector('.block-form').cloneNode(true);
+        newForm.innerHTML = newForm.innerHTML.replace(/blocks-(\d+)-/g, `blocks-${currentForms}-`);
+        formsetDiv.appendChild(newForm);
+
+        totalForms.value = currentForms + 1;
+    });

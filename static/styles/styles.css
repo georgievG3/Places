@@ -341,6 +341,7 @@ header{
 
 .blog-card img{
     width: 350px;
+    height: 250px;
 }
 
 .blog-card button{
@@ -366,6 +367,13 @@ header{
 
 .blog-card h3{
     color: #022c2c;
+}
+
+.blog-card a{
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    border-radius: 50px;
 }
 
 
@@ -1538,3 +1546,72 @@ input[type="submit"]{
     font-size: 16px;
 }
 
+/*ADD BLOG POST PAGE*/
+.add-blog-post-container {
+    margin: 100px auto;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    padding: 30px;
+}
+
+.add-blog-post-form{
+    width: 100%;
+}
+
+.add-blog-post-form h1{
+    text-align: center;
+}
+
+.add-blog-post-form p{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.add-blog-post-form label{
+    color: #022c2c;
+    font-size: 18px;
+}
+
+.add-blog-post-form p:first-of-type input{
+    border: 1px solid gray;
+    outline: none;
+    padding: 20px 5px;
+    border-radius: 5px;
+}
+
+.add-blog-post-form textarea{
+    outline: none;
+}
+
+#add-block{
+    color: #129990;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#add-block:hover{
+    color: #096B68;
+    transition: 0.3s;
+}
+
+#add-block-btn{
+    font-size: 16px !important;
+}
+
+.add-blog-btns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
