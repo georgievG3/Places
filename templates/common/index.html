@@ -6,12 +6,14 @@
         <div class="index-map-container">
             <div id="map"></div>
             <div class="map-container-search">
+                <input type="text" class="map-container-option" placeholder="Избери дати">
+                <hr>
                 <input type="text" class="map-container-option" placeholder="Категория">
                 <hr>
                 <input type="text" class="map-container-option" placeholder="Местоположение">
                 <hr>
                 <input type="text" class="map-container-option" placeholder="Брой гости">
-                <button class = 'basic-btn'><i class="fa-solid fa-magnifying-glass"></i>Търсене</button>
+                <button class='basic-btn'><i class="fa-solid fa-magnifying-glass"></i>Търсене</button>
             </div>
         </div>
         <div class="index-category-container">
@@ -20,32 +22,32 @@
                 <p class="category-container-description">
                     Изберете категория и намерете желаното място!
                 </p>
-                <hr class = 'title-hr'>
+                <hr class='title-hr'>
             </div>
             <div class="category-container">
                 <a href="{% url 'listings_by_category' listing_type='camper' %}">
                     <div class="category-container-card">
-                    <p>Каравани</p>
-                    <img src='{% static 'images/caravan-1858357_1920.jpg' %}' alt="caravan-image">
-                </div>
+                        <p>Каравани</p>
+                        <img src='{% static 'images/caravan-1858357_1920.jpg' %}' alt="caravan-image">
+                    </div>
                 </a>
                 <a href="{% url 'listings_by_category' listing_type='camping' %}">
                     <div class="category-container-card">
-                    <p>Къмпинги</p>
-                    <img src="{% static 'images/seaview-970918_1920.jpg' %}" alt="camping-image">
-                </div>
+                        <p>Къмпинги</p>
+                        <img src="{% static 'images/seaview-970918_1920.jpg' %}" alt="camping-image">
+                    </div>
                 </a>
                 <a href="{% url 'listings_by_category' listing_type='apartment' %}">
                     <div class="category-container-card">
-                    <p>Апартаменти</p>
-                    <img src="{% static 'images/building-6776335_1920.jpg' %}" alt="apartment-image">
-                </div>
+                        <p>Апартаменти</p>
+                        <img src="{% static 'images/building-6776335_1920.jpg' %}" alt="apartment-image">
+                    </div>
                 </a>
                 <a href="{% url 'listings_by_category' listing_type='bungalow' %}">
                     <div class="category-container-card">
-                    <p>Бунгала</p>
-                    <img src="{% static 'images/aerial-1373406_1920.jpg' %}" alt="bungalow-image">
-                </div>
+                        <p>Бунгала</p>
+                        <img src="{% static 'images/aerial-1373406_1920.jpg' %}" alt="bungalow-image">
+                    </div>
                 </a>
             </div>
         </div>
@@ -55,14 +57,14 @@
                 <p class="category-container-description">
                     Вижте най-желаните места!
                 </p>
-                <hr class = 'title-hr'>
+                <hr class='title-hr'>
             </div>
             <div class="listing-reviews-buttons">
                 <button class="pre-btn"><i class="fa-solid fa-angle-left"></i></button>
                 <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>
             </div>
             <div class="recommended-container-cards slider-container">
-                {% for listing in listings%}
+                {% for listing in listings %}
                     <a href="{% url 'listing-detail' listing.slug %}">
                         <div class="recommended-container-card">
                             <div class="recommended-image-shadow"></div>
@@ -87,7 +89,7 @@
                 <p class="category-container-description">
                     Нашият блог!
                 </p>
-                <hr class = 'title-hr'>
+                <hr class='title-hr'>
             </div>
             <div class="listing-reviews-buttons">
                 <button class="pre-btn"><i class="fa-solid fa-angle-left"></i></button>
@@ -100,7 +102,7 @@
                         <h3>{{ blog.title }}</h3>
                         <p class='blog-card-info'>{{ blog.blocks.first.text|truncatewords:50 }}</p>
                         <p class='blog-card-date'>{{ blog.created_at }}</p>
-                        <a href="{% url 'blog-post' blog.slug %}" class = 'basic-btn'>Прочети повече</a>
+                        <a href="{% url 'blog-post' blog.slug %}" class='basic-btn'>Прочети повече</a>
                     </div>
                 {% endfor %}
             </div>
@@ -131,5 +133,8 @@
             </div>
         </div>
     </div>
+    <script>
+        var markersData = {{ markers|safe }};
+    </script>
     <script src="{% static 'javascript/index-map.js' %}"></script>
 {% endblock %}

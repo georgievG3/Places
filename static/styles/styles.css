@@ -1615,3 +1615,58 @@ input[type="submit"]{
     margin-top: 20px;
     gap: 20px;
 }
+
+/*BLOG POST PAGE*/
+.blog-post-container{
+    width: 100%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.blog-post-container h2{
+    margin-top: 20px;
+    color: #022c2c;
+}
+
+.blog-post{
+    box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    padding: 50px;
+    border-radius: 10px;
+    width: 60%;
+    height: auto;
+}
+
+.blog-post-container-block{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.blog-post-container hr{
+    margin: 20px 0;
+    background-color: #129990;
+    height: 3px;
+}
+
+.blog-post-container-block img{
+    width: 80%;
+    align-self: center;
+}
+
+.blog-post-container-block p{
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.other-blog-posts{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+}

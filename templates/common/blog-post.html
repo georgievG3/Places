@@ -1,7 +1,30 @@
 {% extends 'common/base.html' %}
 {% block content %}
     <div class="blog-post-container">
-        <h1>Блог</h1>
-        <h2>{{ blog_post.title }}</h2>
+        <div class="blog-post">
+            <h1>Блог</h1>
+            <h2>{{ blog_post.title }}</h2>
+            <hr>
+            <div class="blog-post-container-block">
+                {% for block in blog_post.blocks.all %}
+                    <img src="{{ block.image.url }}" alt="">
+                    <p>{{ block.text }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="other-posts wrapper">
+            <div class="other-blog-posts">
+                <h2>Други интересни новини:</h2>
+                {% for blog in other_blog_posts %}
+                    <div class="blog-card">
+                        <img src="{{ blog.blocks.first.image.url }}" alt="blog-card-img">
+                        <h3>{{ blog.title }}</h3>
+                        <p class='blog-card-info'>{{ blog.blocks.first.text|truncatewords:50 }}</p>
+                        <p class='blog-card-date'>{{ blog.created_at }}</p>
+                        <a href="{% url 'blog-post' blog.slug %}" class='basic-btn'>Прочети повече</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
