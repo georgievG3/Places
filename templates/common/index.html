@@ -5,16 +5,26 @@
     <div class="index-container">
         <div class="index-map-container">
             <div id="map"></div>
-            <div class="map-container-search">
-                <input type="text" class="map-container-option" placeholder="Избери дати">
-                <hr>
-                <input type="text" class="map-container-option" placeholder="Категория">
-                <hr>
-                <input type="text" class="map-container-option" placeholder="Местоположение">
-                <hr>
-                <input type="text" class="map-container-option" placeholder="Брой гости">
-                <button class='basic-btn'><i class="fa-solid fa-magnifying-glass"></i>Търсене</button>
-            </div>
+                <form id="search-form" method="get" class = 'map-container-search'>
+                    <label for="check_in" class="date-label">От:</label>
+                    <input type="date" name="check_in" class = 'map-container-option'>
+                    <hr>
+                    <label for="check_out" class="date-label">До:</label>
+                    <input type="date" name="check_out" class = 'map-container-option'>
+                    <hr>
+                    <select name="category" class = 'map-container-option'>
+                        <option value="all">Всички категории</option>
+                        <option value="camper">Каравана</option>
+                        <option value="bungalow">Бунгало</option>
+                        <option value="apartment">Апартамент</option>
+                    </select>
+                    <hr>
+                    <input type="text" name="city" placeholder="Местоположение" class = 'map-container-option'>
+                    <hr>
+                    <input type="number" name="max_people" min="1" placeholder="Брой гости" class = 'map-container-option'>
+
+                    <button type="submit" class = 'basic-btn'>Търсене</button>
+                </form>
         </div>
         <div class="index-category-container">
             <div class="category-container-title">
@@ -133,6 +143,17 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById("search-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const category = this.querySelector('[name="category"]').value || "all";
+
+            const params = new URLSearchParams(new FormData(this)).toString();
+
+            window.location.href = `/listings/category/${category}s/?${params}`;
+        });
+    </script>
     <script>
         var markersData = {{ markers|safe }};
     </script>

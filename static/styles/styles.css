@@ -209,6 +209,13 @@ header{
     box-shadow: -1px 1px 9px 0px rgba(0, 0, 0, 0.56);
     -webkit-box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.58);
     -moz-box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.56);
+    border-radius: 10px;
+}
+
+
+.map-container-search label{
+    color: gray;
+    padding-left: 30px;
 }
 
 .map-container-option{
@@ -237,6 +244,7 @@ header{
     background-color: #129990;
     color: white;
     font-size: 16px;
+    border-radius: 0 10px 10px 0;
 }
 
 /*category container*/
@@ -578,6 +586,15 @@ input[type="submit"]{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.listing-like{
+    display: flex;
+}
+
+.listing-like a{
+    color: #ed4040;
+    font-size: 30px;
 }
 
 .image-grid-col-2{
@@ -1107,7 +1124,6 @@ input[type="submit"]{
     justify-content: center;
     flex-direction: column;
     gap: 50px;
-    background-color: rgba(228, 224, 224, 0.58);
     padding: 50px 0 50px 0;
 }
 
@@ -1117,11 +1133,14 @@ input[type="submit"]{
     justify-content: space-around;
     width: 70%;
     gap: 50px;
-    padding: 15px 80px 15px 15px;
+    padding: 20px 80px 20px 15px;
     color: #022c2c;
     background-color: white;
     border-radius: 10px;
     position: relative;
+    box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(9, 107, 104, 0.75);
 }
 
 .user-listing-card-containers{
@@ -1669,4 +1688,20 @@ input[type="submit"]{
     padding: 20px;
     position: sticky;
     top: 20px;
+}
+
+/*LIKED LISTINGS PAGE*/
+.liked-listings-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    margin: 100px;
+}
+
+.liked-listing{
+    position: absolute;
+    top: 30px;
+    right: 30px;
 }

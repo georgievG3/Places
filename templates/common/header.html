@@ -35,7 +35,7 @@
                                 <a href="{% url 'my-listings' %}">Моите места</a>
                                 <a href="{% url 'add-listing' %}">Добави място</a>
                                 <a href="{% url 'my_reservations' %}">Резервации</a>
-                                <a href="">Харесани</a>
+                                <a href="{% url 'liked_listings' %}">Харесани</a>
                                 <a href="{% url 'profile-details' %}">Профил</a>
                             </div>
                         </li>
@@ -45,7 +45,7 @@
                             <div class="sub-navigation-options">
                                 <a href="{% url 'add-listing' %}">Добави място</a>
                                 <a href="{% url 'my_reservations' %}">Резервирани</a>
-                                <a href="">Харесани</a>
+                                <a href="{% url 'liked_listings' %}">Харесани</a>
                                 <a href="{% url 'profile-details' %}">Профил</a>
                             </div>
                         </li>

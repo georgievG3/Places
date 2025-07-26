@@ -2,13 +2,15 @@ import json
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from listings.forms import AddListingForm, AddListingLocationForm, AddListingAmenityForm, MonthlyPriceFormSet, \
     EditListingForm, MonthlyPriceFormSetEdit, ListingFilterForm
-from listings.models import Listing, Image, Amenity
+from listings.models import Listing, Image, Amenity, Like
 
 
 # Create your views here.
@@ -26,6 +28,9 @@ class ListingDetailsView(DetailView):
         first_half_images = images[:mid_index]
         second_half_images = images[mid_index:]
 
+        context["is_liked"] = False
+        if self.request.user.is_authenticated:
+            context["is_liked"] = listing.likes.filter(user=self.request.user).exists()
         context['first_half_images'] = first_half_images
         context['second_half_images'] = second_half_images
         return context
@@ -167,16 +172,19 @@ class UserListingsView(LoginRequiredMixin, ListView):
         return Listing.objects.filter(owner=self.request.user)
 
 
-class ListingsByCategoryView(ListView):
+class ListingsByCategoryView(LoginRequiredMixin, ListView):
     model = Listing
     template_name = 'listings/listings-by-category.html'
     context_object_name = 'listings'
 
     def get_queryset(self):
-        queryset = Listing.objects.filter(
-            type=self.kwargs['listing_type'],
-            is_approved=True
-        )
+        queryset = Listing.objects.filter(is_approved=True)
+
+        listing_type = self.kwargs['listing_type']
+
+        if listing_type != 'all':
+            queryset = queryset.filter(type=listing_type)
+
         form = ListingFilterForm(self.request.GET or None)
 
         if form.is_valid():
@@ -191,13 +199,20 @@ class ListingsByCategoryView(ListView):
 
             if form.cleaned_data.get('name'):
                 queryset = queryset.filter(title__icontains=form.cleaned_data['name'])
+
             if form.cleaned_data.get('max_people'):
                 queryset = queryset.filter(max_people__gte=form.cleaned_data['max_people'])
+
             if form.cleaned_data.get('city'):
-                queryset = queryset.filter(location__city__icontains=form.cleaned_data['city'])
+                queryset = queryset.filter(
+                    Q(location__region__icontains=form.cleaned_data['city']) |
+                    Q(location__city__icontains=form.cleaned_data['city'])
+                )
+
             if form.cleaned_data.get('amenities'):
                 for amenity in form.cleaned_data['amenities']:
                     queryset = queryset.filter(amenities=amenity)
+
             if form.cleaned_data.get('price_max'):
                 queryset = queryset.filter(regular_price__lte=form.cleaned_data['price_max'])
 
@@ -221,3 +236,35 @@ class ListingsByCategoryView(ListView):
             if listing.location and listing.location.latitude and listing.location.longitude
         ])
         return context
+
+
+def like(request: HttpRequest, listing_id: int):
+    like_object = Like.objects.filter(to_listing_id=listing_id, user=request.user).first()
+
+    if like_object:
+        like_object.delete()
+    else:
+        Like.objects.create(
+            to_listing_id=listing_id,
+            user=request.user,
+        )
+
+    return redirect(request.META.get('HTTP_REFERER') + f"#{listing_id}")
+
+
+class LikedListingsView(LoginRequiredMixin, ListView):
+    model = Like
+    template_name = 'listings/liked-listings.html'
+    context_object_name = 'likes'
+
+    def get_queryset(self):
+        return Like.objects.filter(user=self.request.user).select_related("to_listing")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_likes = set(
+            Like.objects.filter(user=self.request.user).values_list("to_listing_id", flat=True)
+        )
+        context["user_likes"] = user_likes
+        return context
+

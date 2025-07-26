@@ -9,16 +9,26 @@
         <div class="listing-title-container">
             <h1>{{ listing.title }}</h1>
             <div class="listing-title-container-btns">
-                <p><i class="fa-solid fa-arrow-up-from-bracket"></i>Сподели</p>
-                <p><i class="fa-regular fa-heart"></i>Харесай</p>
+                <div class="listing-share">
+                    <p><i class="fa-solid fa-arrow-up-from-bracket"></i>Сподели</p>
+                </div>
+                <div class="listing-like">
+                    <a href="{% url 'like' listing.id %}">
+                        {% if is_liked %}
+                            <i class="fa-solid fa-heart" style="color:#ed4040;"></i>
+                        {% else %}
+                            <i class="fa-regular fa-heart"></i>
+                        {% endif %}
+                    </a>
+                </div>
             </div>
         </div>
         <div class="listing-images-container">
-            <img class = 'image-grid-col-2 image-grid-row-2' src="{{ listing.images.first.image.url }}" alt="">
+            <img class='image-grid-col-2 image-grid-row-2' src="{{ listing.images.first.image.url }}" alt="">
             {% for image in listing.images.all|slice:"1:5" %}
                 <img src="{{ image.image.url }}" alt="">
             {% endfor %}
-        <button id="open-gallery-btn" class="show-images-btn basic-btn">Виж всички снимки</button>
+            <button id="open-gallery-btn" class="show-images-btn basic-btn">Виж всички снимки</button>
         </div>
         <div id="image-modal" class="modal">
             <div class="modal-content">
@@ -41,19 +51,19 @@
                 </div>
             </div>
         </div>
-        <h2 class="mini-title">{{ listing.mini_description}}</h2>
+        <h2 class="mini-title">{{ listing.mini_description }}</h2>
         <div class="mini-description-container">
             <ul>
-                <li class = 'basic-btn'>Брой гости - {{ listing.max_people }}</li>
+                <li class='basic-btn'>Брой гости - {{ listing.max_people }}</li>
                 {% if listing.camping == 'camper' %}
-                    <li class = 'basic-btn'>Каравани</li>
-                    <li class = 'basic-btn'>Къмпинг {{ listing.camping }}</li>
+                    <li class='basic-btn'>Каравани</li>
+                    <li class='basic-btn'>Къмпинг {{ listing.camping }}</li>
 
-                {% elif listing.type == 'bungalow'%}
-                    <li class = 'basic-btn'>Бунгала</li>
-                    <li class = 'basic-btn'>Къмпинг {{ listing.camping }}</li>
+                {% elif listing.type == 'bungalow' %}
+                    <li class='basic-btn'>Бунгала</li>
+                    <li class='basic-btn'>Къмпинг {{ listing.camping }}</li>
                 {% else %}
-                    <li class = 'basic-btn'>Апартаменти</li>
+                    <li class='basic-btn'>Апартаменти</li>
                 {% endif %}
             </ul>
             <div class="host">
@@ -65,22 +75,22 @@
             <div class="listing-info-container">
                 <hr>
                 <div class="listing-description">
-                    <h2 class = 'mini-title'>Описание</h2>
+                    <h2 class='mini-title'>Описание</h2>
                     <p>{{ listing.description }}</p>
                 </div>
                 <hr>
                 <div class="listing-map-container">
-                    <h2 class = 'mini-title'>Местоположение</h2>
-                    <div id="map" class = 'listing-map'></div>
+                    <h2 class='mini-title'>Местоположение</h2>
+                    <div id="map" class='listing-map'></div>
                     <p class="hidden" id="lng">{{ listing.location.longitude }}</p>
                     <p class="hidden" id="lat">{{ listing.location.latitude }}</p>
                 </div>
                 <hr>
                 <div class="amenity-container">
-                    <h2 class = 'mini-title'>Удобства</h2>
+                    <h2 class='mini-title'>Удобства</h2>
                     <ul>
                         {% for amenity in listing.amenities.all %}
-                            <li>{{ amenity}}</li>
+                            <li>{{ amenity }}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -100,7 +110,7 @@
                                     <p>Bulgaria</p>
                                 </div>
                                 <div class="review-date-rating">
-                                    <p class = 'review-date'>24/05/2025</p>
+                                    <p class='review-date'>24/05/2025</p>
                                     <p class="review-rating">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
@@ -111,7 +121,8 @@
                                 </div>
                             </div>
                             <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
+                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
+                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
                             </div>
                         </div>
                         <div class="card">
@@ -122,7 +133,7 @@
                                     <p>Bulgaria</p>
                                 </div>
                                 <div class="review-date-rating">
-                                    <p class = 'review-date'>24/05/2025</p>
+                                    <p class='review-date'>24/05/2025</p>
                                     <p class="review-rating">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
@@ -133,7 +144,8 @@
                                 </div>
                             </div>
                             <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
+                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
+                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
                             </div>
                         </div>
                         <div class="card">
@@ -144,7 +156,7 @@
                                     <p>Bulgaria</p>
                                 </div>
                                 <div class="review-date-rating">
-                                    <p class = 'review-date'>24/05/2025</p>
+                                    <p class='review-date'>24/05/2025</p>
                                     <p class="review-rating">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
@@ -155,7 +167,8 @@
                                 </div>
                             </div>
                             <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
+                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
+                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
                             </div>
                         </div>
                         <div class="card">
@@ -166,7 +179,7 @@
                                     <p>Bulgaria</p>
                                 </div>
                                 <div class="review-date-rating">
-                                    <p class = 'review-date'>24/05/2025</p>
+                                    <p class='review-date'>24/05/2025</p>
                                     <p class="review-rating">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
@@ -177,7 +190,8 @@
                                 </div>
                             </div>
                             <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
+                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
+                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
                             </div>
                         </div>
                         <div class="card">
@@ -188,7 +202,7 @@
                                     <p>Bulgaria</p>
                                 </div>
                                 <div class="review-date-rating">
-                                    <p class = 'review-date'>24/05/2025</p>
+                                    <p class='review-date'>24/05/2025</p>
                                     <p class="review-rating">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
@@ -199,7 +213,8 @@
                                 </div>
                             </div>
                             <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
+                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
+                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
                             </div>
                         </div>
                         <div class="card">
@@ -210,7 +225,7 @@
                                     <p>Bulgaria</p>
                                 </div>
                                 <div class="review-date-rating">
-                                    <p class = 'review-date'>24/05/2025</p>
+                                    <p class='review-date'>24/05/2025</p>
                                     <p class="review-rating">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
@@ -221,7 +236,8 @@
                                 </div>
                             </div>
                             <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
+                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
+                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
                             </div>
                         </div>
                     </div>
@@ -229,28 +245,29 @@
             </div>
             <div class="listing-social-container">
                 <div class="listing-social-sticky-container">
-                    <h2 class = 'mini-title'>{{ listing.regular_price }}Bgn на нощувка</h2>
+                    <h2 class='mini-title'>{{ listing.regular_price }}Bgn на нощувка</h2>
                     <div class="reservation-info">
                         <div id="calendar"></div>
                         <input type="hidden" id="check-in">
                         <input type="hidden" id="check-out">
                     </div>
-                    <a id="reserve-btn" href="{% url 'reserve_listing' listing.slug %}" class="reserve-btn">Резервирай</a>
+                    <a id="reserve-btn" href="{% url 'reserve_listing' listing.slug %}"
+                       class="reserve-btn">Резервирай</a>
                 </div>
                 <div class="listing-social-sticky-container">
                     <p>Адрес: {{ listing.location.address }}</p>
                     <p>Държава: {{ listing.location.region }}</p>
                     <p>Град: {{ listing.location.city }}</p>
                 </div>
-{#                <div class="nearby-destinations">#}
-{#                    <ul>#}
-{#                        <li>Кефене якото кафене</li>#}
-{#                        <li>Музей на спорта</li>#}
-{#                        <li>Люлка на любовта</li>#}
-{#                        <li>Детска площадка</li>#}
-{#                        <li>Парк</li>#}
-{#                    </ul>#}
-{#                </div>#}
+                {#                <div class="nearby-destinations">#}
+                {#                    <ul>#}
+                {#                        <li>Кефене якото кафене</li>#}
+                {#                        <li>Музей на спорта</li>#}
+                {#                        <li>Люлка на любовта</li>#}
+                {#                        <li>Детска площадка</li>#}
+                {#                        <li>Парк</li>#}
+                {#                    </ul>#}
+                {#                </div>#}
             </div>
         </div>
     </div>

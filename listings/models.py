@@ -95,4 +95,10 @@ class Image(models.Model):
     image = models.ImageField(upload_to='listing_images/')
 
 
+class Like(models.Model):
+    to_listing = models.ForeignKey(to=Listing, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
+    )
 
