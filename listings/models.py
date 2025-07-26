@@ -61,6 +61,7 @@ class Listing(models.Model):
     owner = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='listings')
     slug = models.SlugField(unique=True)
     is_approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

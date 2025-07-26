@@ -3,16 +3,20 @@
 {% block content %}
     <div class="profile-details-container">
         <div class="profile-picture-container">
-            <img src="{% static 'images/profile-picture.jpeg' %}" alt="profile-picture">
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="profile-picture">
+            {% else %}
+                <img src="{% static 'images/profile-picture.jpeg' %}" alt="default-profile-picture">
+            {% endif %}
         </div>
         <hr class="profile-details-hr">
         <div class="profile-details">
             <h1>Моят Профил</h1>
             <hr>
-            <form method="post" class = 'profile-edit-form'>
+            <form method="post" class='profile-edit-form' enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class = 'basic-btn'> Редактирай </button>
+                <button type="submit" class='basic-btn'> Редактирай</button>
             </form>
         </div>
     </div>

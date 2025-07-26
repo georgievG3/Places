@@ -22,7 +22,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 class Profile(models.Model):
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    profile_picture = models.URLField(blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     profile_details = models.TextField(blank=True, null=True)
 
