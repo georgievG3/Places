@@ -1,15 +1,16 @@
 import json
 
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from listings.forms import AddListingForm, AddListingLocationForm, AddListingAmenityForm, MonthlyPriceFormSet, \
-    EditListingForm, MonthlyPriceFormSetEdit, ListingFilterForm
+    EditListingForm, MonthlyPriceFormSetEdit, ListingFilterForm, ImageFormSet, ImageFormSetEdit
 from listings.models import Listing, Image, Amenity, Like
 
 
@@ -42,10 +43,17 @@ class AddListingView(LoginRequiredMixin, CreateView):
     template_name = 'listings/add-listing-page.html'
     success_url = reverse_lazy('my-listings') #TO MAKE TO RETURN TO DASHBOARD
 
+    def dispatch(self, request, *args, **kwargs):
+        if not hasattr(request.user, "profile") or not request.user.profile.is_complete():
+            messages.warning(request, "Моля, попълнете профила си преди да добавите обява.")
+            return redirect(reverse("profile-edit"))
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['location_form'] = kwargs.get('location_form', AddListingLocationForm())
         context['monthly_price_formset'] = kwargs.get('monthly_price_formset', MonthlyPriceFormSet())
+        context['image_formset'] = kwargs.get('image_formset', ImageFormSet())
 
         return context
 
@@ -53,8 +61,10 @@ class AddListingView(LoginRequiredMixin, CreateView):
         form = self.get_form()
         location_form = AddListingLocationForm(request.POST)
         monthly_price_formset = MonthlyPriceFormSet(request.POST)
+        image_formset = ImageFormSet(request.POST, request.FILES)
 
-        if form.is_valid() and location_form.is_valid() and monthly_price_formset.is_valid():
+        if form.is_valid() and location_form.is_valid() and monthly_price_formset.is_valid() and image_formset.is_valid():
+
             location = location_form.save()
             listing = form.save(commit=False)
             listing.owner = request.user
@@ -66,10 +76,10 @@ class AddListingView(LoginRequiredMixin, CreateView):
             monthly_price_formset.instance = listing
             monthly_price_formset.save()
 
-            images = request.FILES.getlist('images')
-            for img in images:
-                Image.objects.create(listing=listing, image=img)
+            image_formset.instance = listing
+            image_formset.save()
 
+            self.object = listing
             return self.form_valid(form)
 
         self.object = None
@@ -77,7 +87,8 @@ class AddListingView(LoginRequiredMixin, CreateView):
             self.get_context_data(
                 form=form,
                 location_form=location_form,
-                monthly_price_formset=monthly_price_formset
+                monthly_price_formset=monthly_price_formset,
+                image_formset=image_formset
             )
         )
 
@@ -95,16 +106,25 @@ class EditListingView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         if self.request.method == 'POST':
-            context['location_form'] = kwargs.get('location_form', AddListingLocationForm(self.request.POST,
-                                                                                          instance=self.object.location))
-            context['monthly_price_formset_edit'] = kwargs.get('monthly_price_formset_edit',
-                                                          MonthlyPriceFormSetEdit(self.request.POST, instance=self.object))
+            context['location_form'] = kwargs.get(
+                'location_form',
+                AddListingLocationForm(self.request.POST, instance=self.object.location)
+            )
+            context['monthly_price_formset_edit'] = kwargs.get(
+                'monthly_price_formset_edit',
+                MonthlyPriceFormSetEdit(self.request.POST, instance=self.object)
+            )
+            context['image_formset_edit'] = ImageFormSetEdit(
+                self.request.POST, self.request.FILES,
+                instance=self.object, prefix='images'
+            )
         else:
             context['location_form'] = AddListingLocationForm(instance=self.object.location)
             context['monthly_price_formset_edit'] = MonthlyPriceFormSetEdit(instance=self.object)
-
+            context['image_formset_edit'] = ImageFormSetEdit(
+                instance=self.object, prefix='images'
+            )
         context['images'] = self.object.images.all()
         return context
 
@@ -113,8 +133,24 @@ class EditListingView(LoginRequiredMixin, UpdateView):
         form = self.get_form()
         location_form = AddListingLocationForm(request.POST, instance=self.object.location)
         monthly_price_formset_edit = MonthlyPriceFormSetEdit(request.POST, instance=self.object)
+        image_formset_edit = ImageFormSetEdit(
+            request.POST, request.FILES,
+            instance=self.object, prefix='images'
+        )
 
-        if form.is_valid() and location_form.is_valid() and monthly_price_formset_edit.is_valid():
+        form_valid = form.is_valid()
+        location_valid = location_form.is_valid()
+        monthly_valid = monthly_price_formset_edit.is_valid()
+        images_valid = image_formset_edit.is_valid()
+
+        print("form_valid:", form_valid)
+        print("location_valid:", location_valid)
+        print("monthly_valid:", monthly_valid)
+        print("images_valid:", images_valid)
+        print("image_formset_edit errors:", image_formset_edit.errors)
+        print("image_formset_edit non_form_errors:", image_formset_edit.non_form_errors())
+
+        if form_valid and location_valid and monthly_valid and images_valid:
             location = location_form.save()
             listing = form.save(commit=False)
             listing.owner = request.user
@@ -123,10 +159,7 @@ class EditListingView(LoginRequiredMixin, UpdateView):
             form.save_m2m()
 
             monthly_price_formset_edit.save()
-
-            images = request.FILES.getlist('images')
-            for img in images:
-                Image.objects.create(listing=listing, image=img)
+            image_formset_edit.save()
 
             return redirect(self.success_url)
 
@@ -134,14 +167,15 @@ class EditListingView(LoginRequiredMixin, UpdateView):
             self.get_context_data(
                 form=form,
                 location_form=location_form,
-                monthly_price_formset=monthly_price_formset_edit
+                monthly_price_formset_edit=monthly_price_formset_edit,
+                image_formset_edit=image_formset_edit
             )
         )
 
 
 class DeleteListingView(LoginRequiredMixin, DeleteView):
     model = Listing
-    template_name = 'listings/delete-listing-view.html'
+    template_name = 'listings/delete-listing-page.html'
     success_url = reverse_lazy('my-listings')
     slug_field = 'slug'
     slug_url_kwarg = 'slug'

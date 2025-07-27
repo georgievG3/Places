@@ -25,6 +25,14 @@ hr{
     background-color: #129990;
 }
 
+.messages{
+    position: absolute;
+    left: 50%;
+    color: red;
+    font-size: 20px;
+    padding: 20px 0;
+}
+
 .basic-btn{
     transition: 0.3s;
     background-color: #129990;
@@ -948,9 +956,6 @@ input[type="submit"]{
 /*profile edit*/
 .profile-edit-form{
     width: 500px;
-}
-
-.profile-edit-form p{
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

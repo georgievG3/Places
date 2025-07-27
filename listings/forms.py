@@ -53,6 +53,32 @@ class AddListingAmenityForm(forms.ModelForm):
         fields = '__all__'
 
 
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['image']
+
+ImageFormSet = inlineformset_factory(
+    Listing,
+    Image,
+    form=ImageForm,
+    extra=1,
+    min_num=5,
+    validate_min=True,
+    can_delete=True
+)
+
+ImageFormSetEdit = inlineformset_factory(
+    Listing,
+    Image,
+    form=ImageForm,
+    extra=1,
+    can_delete=True,
+    validate_min=False,
+    min_num=0,
+)
+
+
 class MonthlyPriceForm(forms.ModelForm):
     class Meta:
         model = MonthlyPrice
@@ -78,7 +104,7 @@ MonthlyPriceFormSetEdit = inlineformset_factory(
     form=MonthlyPriceForm,
     fields=['month', 'price'],
     extra=0,
-    can_delete=False
+    can_delete=False,
 )
 
 

@@ -52,6 +52,10 @@ class ApproveListingView(View):
         listing = Listing.objects.get(slug=slug)
         listing.is_approved = True
         listing.save()
+
+        owner = listing.owner
+        owner.is_partner = True
+        owner.save()
         return redirect('pending_listings')
 
 

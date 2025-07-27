@@ -15,7 +15,24 @@
             <hr>
             <form method="post" class='profile-edit-form' enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <label for="id_profile_picture">Профилна снимка:</label>
+                {{ form.profile_picture }}
+                {{ form.profile_picture.errors }}
+                <label for="id_phone_number">Телефонен номер:</label>
+                {{ form.phone_number }}
+                {{ form.phone_number.errors }}
+                <label for="id_profile_details">Детайли за профила:</label>
+                {{ form.profile_details }}
+                {{ form.profile_details.errors }}
+                <label for="id_date_of_birth">Дата на раждане:</label>
+                {{ form.date_of_birth }}
+                {{ form.date_of_birth.errors }}
+                <label for="id_first_name">Име:</label>
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+                <label for="id_last_name">Фамилия:</label>
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
                 <button type="submit" class='basic-btn'> Редактирай</button>
             </form>
         </div>

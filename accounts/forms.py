@@ -65,6 +65,10 @@ class ProfileBaseForm(forms.ModelForm):
             'date_of_birth': 'Дата на раждане',
         }
 
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'placeholder': 'Формат: YYYY-MM-DD; 2000-01-30'}),
+        }
+
 
 class ProfileEditForm(ProfileBaseForm):
     first_name = forms.CharField(label='Име', max_length=30, required=False)

@@ -11,47 +11,58 @@
                     <div class="listing-form-detail-input">
                         {{ form.type.label_tag }}
                         {{ form.type }}
+                        {{ form.type.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.title.label_tag }}
                         {{ form.title }}
+                        {{ form.title.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.camping.label_tag }}
                         {{ form.camping }}
+                        {{ form.camping.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.rooms.label_tag }}
                         {{ form.rooms }}
+                        {{ form.rooms.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.min_nights.label_tag }}
                         {{ form.min_nights }}
+                        {{ form.min_nights.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.max_people.label_tag }}
                         {{ form.max_people }}
+                        {{ form.max_people.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.square_meters.label_tag }}
                         {{ form.square_meters }}
+                        {{ form.square_meters.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.mini_description.label_tag }}
                         {{ form.mini_description }}
+                        {{ form.mini_description.errors }}
                     </div>
                     <div class="listing-form-detail-input">
                         {{ form.regular_price.label_tag }}
                         {{ form.regular_price }}
+                        {{ form.regular_price.errors }}
                     </div>
                     <div class="listing-form-detail-input-pets">
                         {{ form.pets_allowed.label_tag }}
                         {{ form.pets_allowed }}
+                        {{ form.pets_allowed.errors }}
                     </div>
                 </div>
                 <div class="listing-form-details-description">
                     <label>Описание:</label>
                     {{ form.description }}
+                    {{ form.description.errors }}
                 </div>
                 <div class="listing-form-details-amenities">
                     <label>Удобства:</label>
@@ -81,30 +92,52 @@
                     <div class="listing-form-details-location-input">
                         {{ location_form.region.label_tag }}
                         {{ location_form.region }}
+                        {{ location_form.region.errors }}
                     </div>
                     <div class="listing-form-details-location-input">
                         {{ location_form.address.label_tag }}
                         {{ location_form.address }}
+                        {{ location_form.address.errors }}
                     </div>
                     <div class="listing-form-details-location-input">
                         {{ location_form.city.label_tag }}
                         {{ location_form.city }}
+                        {{ location_form.city.errors }}
                     </div>
                     <div class="listing-form-details-location-input">
                         {{ location_form.terrain_type.label_tag }}
                         {{ location_form.terrain_type }}
+                        {{ location_form.terrain_type.errors }}
                     </div>
                     {{ location_form.latitude }}
+                    {{ location_form.latitude.errors }}
                     {{ location_form.longitude }}
+                    {{ location_form.longitude.errors }}
                 </div>
             </div>
             <div class="add-listing-form-details">
                 <h1>Снимки</h1>
                 <hr>
-                <input type="file" name="images" multiple>
+                <div id="image-formset-container">
+                    {{ image_formset.management_form }}
+                    {% for form in image_formset.forms %}
+                        <div class="image-form" id="image-form-{{ forloop.counter0 }}">
+                            {{ form.image.label_tag }}
+                            {{ form.image }}
+                            <button type="button" class="remove-image-btn">Премахни</button>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="button" id="add-image-btn">Добави снимка</button>
+                {% if form.non_field_errors %}
+                    <div class="errorlist">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
             </div>
             <button class="add-listing-btn" type="submit">ДОБАВИ МЯСТО</button>
         </div>
     </form>
+    <script src="{% static 'javascript/add-listing.js' %}"></script>
     <script src="{% static 'javascript/add-listing-map.js' %}"></script>
 {% endblock %}
