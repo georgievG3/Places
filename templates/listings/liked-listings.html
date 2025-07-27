@@ -4,8 +4,6 @@
         <h1>Харесани обяви:</h1>
         {% for listing in likes %}
             <div class='user-listing-card'>
-                {#                <a href="{% url 'edit-listing' listing.slug %}" class = 'listing-buttons listing-edit'><i class="fa-solid fa-pen-to-square"></i></a>#}
-                {#                <a href="{% url 'delete-listing' listing.slug %}" class = 'listing-buttons listing-delete'><i class="fa-solid fa-trash"></i></a>#}
                 <img src="{{ listing.to_listing.images.first.image.url }}" alt="">
                 <div class="user-listing-card-containers">
                     <div class="user-listing-card-title-container">

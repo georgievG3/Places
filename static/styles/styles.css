@@ -8,6 +8,7 @@
     font-style: normal;
 }
 
+
 h1{
     text-transform: uppercase;
     color: #022c2c;
@@ -183,6 +184,49 @@ header{
     margin-top: 7px;
 }
 
+
+/*FOOTER*/
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.footer-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.footer-top-content ul li a{
+    text-decoration: none;
+    color: #129990;
+}
+
+.footer-top-content ul li{
+    list-style-type: circle;
+    margin-top: 10px;
+    color: #096B68;
+}
+
+.footer-bottom{
+    background-color: #129990;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-container hr{
+    width: 100%;
+    height: 3px;
+    background-color: #129990;
+    margin-top: 100px;
+}
 
 
 /*INDEX PAGE*/

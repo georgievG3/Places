@@ -46,9 +46,5 @@ class AppUserAdmin(UserAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    ...
+    list_display = ("user", "date_of_birth", "phone_number",)
 
-
-@admin.register(Listing)
-class ListingAdmin(admin.ModelAdmin):
-    ...

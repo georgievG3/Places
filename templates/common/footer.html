@@ -1,1 +1,37 @@
-{#<h1>This is the footer</h1>#}
+<div class="footer-container">
+    <hr>
+    <div class="footer-top">
+        <div class="footer-top-content">
+            <h2>За нас</h2>
+            <ul>
+                <li>За нас</li>
+                <li>Контакти</li>
+                <li>Общи условия</li>
+                <li>Поверителност</li>
+            </ul>
+        </div>
+        <div class="footer-top-content">
+            <h2>Категории</h2>
+            <ul>
+                <li><a href="{% url 'listings_by_category' 'camper' %}">Каравани</a></li>
+                <li><a href="{% url 'listings_by_category' 'apartment' %}">Апартаменти</a></li>
+                <li><a href="{% url 'listings_by_category' 'bungalow' %}">Бунгала</a></li>
+                <li><a href="{% url 'listings_by_category' 'camping' %}">Къмпинги</a></li>
+                <li><a href="#">Блог</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-top-content">
+            <h2>За потребителя</h2>
+            <ul>
+                <li><a href="{% url 'register' %}">Регистрация</a></li>
+                <li><a href="{% url 'login' %}">Вход</a></li>
+                <li><a href="{% url 'profile-details' %}">Акаунт</a></li>
+                <li><a href="{% url 'add-listing' %}">Добави обява</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        ©2025 All Rights Reserved.Y&G Design.
+    </div>
+</div>
