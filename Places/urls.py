@@ -27,4 +27,4 @@ urlpatterns = [
     path('listings/', include('listings.urls')),
     path('reservations/', include('reservations.urls')),
     path('admin_panel/', include('admin_panel.urls'))
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
