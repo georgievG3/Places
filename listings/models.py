@@ -2,6 +2,7 @@ from cloudinary.models import CloudinaryField
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 from django.utils.text import slugify
+from unidecode import unidecode
 
 from accounts.models import AppUser
 from listings.validators import ListingImageFileSizeValidator
@@ -67,14 +68,15 @@ class Listing(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            base_slug = slugify(self.title)
-            slug = base_slug
-            counter = 1
-            while Listing.objects.filter(slug=slug).exists():
-                slug = f"{base_slug}-{counter}"
-                counter += 1
-            self.slug = slug
+        base_slug = slugify(unidecode(self.title))
+        if not base_slug:
+            base_slug = "listing"
+        slug = base_slug
+        counter = 1
+        while Listing.objects.filter(slug=slug).exists():
+            slug = f"{base_slug}-{counter}"
+            counter += 1
+        self.slug = slug
         super().save(*args, **kwargs)
 
 
