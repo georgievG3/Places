@@ -1,0 +1,103 @@
+@media (max-width: 768px) {
+    /*INDEX PAGE*/
+    .header-container{
+      margin: 0;
+      justify-content: center;
+    }
+
+    .header-navigation {
+        display: none;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background-color: #129990;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    .header-add-listing-btn{
+      display: none;
+    }
+
+    .header-navigation.show {
+        display: block;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .header-ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sub-navigation-options {
+        position: relative;
+        background: none;
+        box-shadow: none;
+    }
+
+    .header-right-container{
+      margin-left: 10px;
+    }
+
+    #map{
+      height: 500px;
+    }
+
+    .index-map-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .map-container-search {
+        position: static !important;
+        width: 90% !important;
+        height: auto !important;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 2rem;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        margin-top: 20px;
+        align-self: center;
+    }
+
+    .map-container-search label:nth-child(1),
+    .map-container-search input[name="check_in"] {
+        width: 20%;
+        margin-bottom: 0.25rem;
+        font-size: 8px;
+    }
+
+    .map-container-search label:nth-child(3),
+    .map-container-search input[name="check_out"] {
+        width: 20%;
+        margin-bottom: 0.25rem;
+    }
+
+    .map-container-search select[name="category"],
+    .map-container-search input[name="city"],
+    .map-container-search input[name="max_people"] {
+        width: 31%;
+        margin-bottom: 0.25rem;
+    }
+
+    .map-container-search hr {
+        display: none !important;
+    }
+
+    .map-container-search button {
+        width: 100% !important;
+        margin-top: 0.5rem;
+        border-radius: 10px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .map-container-option{
+        padding: 5px;
+    }
+}

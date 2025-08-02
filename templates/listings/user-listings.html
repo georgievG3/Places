@@ -1,42 +1,46 @@
 {% extends 'common/base.html' %}
 {% block content %}
     <div class="user-listings">
-        {% for listing in listings %}
-            <div class='user-listing-card'>
-                <a href="{% url 'edit-listing' listing.slug %}" class = 'listing-buttons listing-edit'><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="{% url 'delete-listing' listing.slug %}" class = 'listing-buttons listing-delete'><i class="fa-solid fa-trash"></i></a>
-                <img src="{{ listing.images.first.image.url }}" alt="">
-                <div class="user-listing-card-containers">
-                    <div class="user-listing-card-title-container">
-                        <div class="listing-card-info">
-                            <a href="{% url 'listing-detail' listing.slug %}"><h3>{{ listing.title }}</h3></a>
-                            <p class="listing-card-category">{{ listing.type }}</p>
+        {% if listings %}
+            {% for listing in listings %}
+                <div class='user-listing-card'>
+                    <a href="{% url 'edit-listing' listing.slug %}" class = 'listing-buttons listing-edit'><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="{% url 'delete-listing' listing.slug %}" class = 'listing-buttons listing-delete'><i class="fa-solid fa-trash"></i></a>
+                    <img src="{{ listing.images.first.image.url }}" alt="">
+                    <div class="user-listing-card-containers">
+                        <div class="user-listing-card-title-container">
+                            <div class="listing-card-info">
+                                <a href="{% url 'listing-detail' listing.slug %}"><h3>{{ listing.title }}</h3></a>
+                                <p class="listing-card-category">{{ listing.type }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="user-listing-card-info-container">
-                        <div class="listing-card-info">
-                            <p>Активна</p>
-                            <p>v</p>
-                        </div>
-                        <div class='listing-card-info'>
-                            <p>Разглеждания</p>
-                            <p>0</p>
-                        </div>
-                        <div class='listing-card-info'>
-                            <p>Харесвания</p>
-                            <p>0</p>
-                        </div>
-                        <div class='listing-card-info'>
-                            <p>Рейтинг</p>
-                            <p>0</p>
-                        </div>
-                        <div class='listing-card-info'>
-                            <p>Ревюта</p>
-                            <p>0</p>
+                        <div class="user-listing-card-info-container">
+                            <div class="listing-card-info">
+                                <p>Активна</p>
+                                <p>v</p>
+                            </div>
+                            <div class='listing-card-info'>
+                                <p>Разглеждания</p>
+                                <p>0</p>
+                            </div>
+                            <div class='listing-card-info'>
+                                <p>Харесвания</p>
+                                <p>0</p>
+                            </div>
+                            <div class='listing-card-info'>
+                                <p>Рейтинг</p>
+                                <p>0</p>
+                            </div>
+                            <div class='listing-card-info'>
+                                <p>Ревюта</p>
+                                <p>0</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+         {% else %}
+            <h1>Нямате качени обяви!</h1>
+        {% endif %}
     </div>
 {% endblock %}

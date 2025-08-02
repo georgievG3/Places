@@ -117,6 +117,7 @@
             </div>
             <div class="add-listing-form-details">
                 <h1>Снимки</h1>
+                <h3>Добавете минимум 6 снимки!</h3>
                 <hr>
                 <div id="image-formset-container">
                     {{ image_formset.management_form }}
@@ -128,7 +129,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <button type="button" id="add-image-btn">Добави снимка</button>
+                <button type="button" id="add-image-btn">+Добави снимка</button>
                 {% if form.non_field_errors %}
                     <div class="errorlist">
                         {{ form.non_field_errors }}

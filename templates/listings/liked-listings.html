@@ -1,42 +1,46 @@
 {% extends 'common/base.html' %}
 {% block content %}
     <div class="liked-listings-container">
-        <h1>Харесани обяви:</h1>
-        {% for listing in likes %}
-            <div class='user-listing-card'>
-                <img src="{{ listing.to_listing.images.first.image.url }}" alt="">
-                <div class="user-listing-card-containers">
-                    <div class="user-listing-card-title-container">
-                        <div class="listing-card-info">
-                            <a href="{% url 'listing-detail' listing.to_listing.slug %}">
-                                <h2>{{ listing.to_listing.title }}</h2></a>
+        {% if likes %}
+            <h1>Харесани обяви:</h1>
+            {% for listing in likes %}
+                <div class='user-listing-card'>
+                    <img src="{{ listing.to_listing.images.first.image.url }}" alt="">
+                    <div class="user-listing-card-containers">
+                        <div class="user-listing-card-title-container">
+                            <div class="listing-card-info">
+                                <a href="{% url 'listing-detail' listing.to_listing.slug %}">
+                                    <h2>{{ listing.to_listing.title }}</h2></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="user-listing-card-info-container">
-                        <div class="listing-card-info">
-                            <p>Град:</p>
-                            <p>{{ listing.to_listing.location.city }}</p>
-                        </div>
-                        <div class='listing-card-info'>
-                            <p>Цена:</p>
-                            <p>От: {{ listing.to_listing.regular_price }}BGN</p>
-                        </div>
-                        <div class='listing-card-info'>
-                            <p>Макс. брой гости:</p>
-                            <p>{{ listing.to_listing.max_people }}</p>
-                        </div>
-                        <div class="listing-like liked-listing">
-                            <a href="{% url 'like' listing.to_listing.id %}">
-                                {% if listing.to_listing.id in user_likes %}
-                                    <i class="fa-solid fa-heart" style="color:#ed4040;"></i>
-                                {% else %}
-                                    <i class="fa-regular fa-heart"></i>
-                                {% endif %}
-                            </a>
+                        <div class="user-listing-card-info-container">
+                            <div class="listing-card-info">
+                                <p>Град:</p>
+                                <p>{{ listing.to_listing.location.city }}</p>
+                            </div>
+                            <div class='listing-card-info'>
+                                <p>Цена:</p>
+                                <p>От: {{ listing.to_listing.regular_price }}BGN</p>
+                            </div>
+                            <div class='listing-card-info'>
+                                <p>Макс. брой гости:</p>
+                                <p>{{ listing.to_listing.max_people }}</p>
+                            </div>
+                            <div class="listing-like liked-listing">
+                                <a href="{% url 'like' listing.to_listing.id %}">
+                                    {% if listing.to_listing.id in user_likes %}
+                                        <i class="fa-solid fa-heart" style="color:#ed4040;"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-heart"></i>
+                                    {% endif %}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <h1 class = 'empty-likes'>Нямате харесани обяви!</h1>
+        {% endif %}
     </div>
 {% endblock %}

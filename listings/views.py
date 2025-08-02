@@ -2,6 +2,7 @@ import json
 
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpRequest
@@ -206,7 +207,7 @@ class UserListingsView(LoginRequiredMixin, ListView):
         return Listing.objects.filter(owner=self.request.user)
 
 
-class ListingsByCategoryView(LoginRequiredMixin, ListView):
+class ListingsByCategoryView(ListView):
     model = Listing
     template_name = 'listings/listings-by-category.html'
     context_object_name = 'listings'
@@ -272,6 +273,7 @@ class ListingsByCategoryView(LoginRequiredMixin, ListView):
         return context
 
 
+@login_required
 def like(request: HttpRequest, listing_id: int):
     like_object = Like.objects.filter(to_listing_id=listing_id, user=request.user).first()
 

@@ -101,6 +101,24 @@ header{
     border-radius: 50px;
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+}
+
 .sub-navigation{
     position: relative;
     z-index: 112;
@@ -192,7 +210,6 @@ header{
     align-items: center;
     justify-content: center;
     gap: 50px;
-    margin-top: 50px;
 }
 
 .footer-top{
@@ -225,7 +242,6 @@ header{
     width: 100%;
     height: 3px;
     background-color: #129990;
-    margin-top: 100px;
 }
 
 
@@ -1161,6 +1177,21 @@ input[type="submit"]{
     transition: 0.3s;
 }
 
+#add-image-btn{
+    border: none;
+    background-color: transparent;
+    color: #129990;
+    font-size: 18px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: 0.3s;
+}
+
+#add-image-btn:hover{
+    color: #096B68;
+    transition: 0.3s;
+}
+
 .add-listing-btn:hover{
     background-color: #022c2c;
     transition: 0.3s;
@@ -1175,6 +1206,7 @@ input[type="submit"]{
     flex-direction: column;
     gap: 50px;
     padding: 50px 0 50px 0;
+    min-height: 70vh;
 }
 
 .user-listing-card{
@@ -1297,6 +1329,7 @@ input[type="submit"]{
     flex-direction: column;
     margin: 100px auto;
     gap: 20px;
+    min-height: 60vh;
 }
 
 .delete-listing-btn{
@@ -1440,6 +1473,7 @@ input[type="submit"]{
 .listing-by-category-container{
     display: flex;
     overflow: hidden;
+    height: 100vh;
 }
 
 .category-map-container{
@@ -1451,9 +1485,9 @@ input[type="submit"]{
 }
 
 .category-search-results{
-    width: 50%;
+    width: 100vh;
     height: auto;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 1rem;
 }
 
@@ -1748,6 +1782,7 @@ input[type="submit"]{
     flex-direction: column;
     gap: 50px;
     margin: 100px;
+    min-height: 60vh;
 }
 
 .liked-listing{
