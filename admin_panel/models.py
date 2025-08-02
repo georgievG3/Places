@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.db import models
 from django.utils.text import slugify
 from unidecode import unidecode
@@ -27,7 +28,12 @@ class BlogPost(models.Model):
 class BlogPostBlock(models.Model):
     blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='blocks')
     text = models.TextField()
-    image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
+    image = CloudinaryField(
+        'image',
+        folder='blog_images/',
+        blank=True,
+        null=True
+    )
     order = models.PositiveIntegerField(default=0)
 
     class Meta:

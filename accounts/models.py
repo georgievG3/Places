@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import EmailValidator, MinLengthValidator
@@ -24,7 +25,13 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 class Profile(models.Model):
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
     date_of_birth = models.DateField(blank=True, null=True, validators=[validate_age])
-    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True, validators=[ProfilePictureFileSizeValidator(3)])
+    profile_picture = CloudinaryField(
+        'image',
+        folder='profile_pics/',
+        blank=True,
+        null=True,
+        validators=[ProfilePictureFileSizeValidator(3)]
+    )
     phone_number = models.CharField(max_length=15, validators=[MinLengthValidator(9)])
     profile_details = models.TextField(blank=True, null=True)
 

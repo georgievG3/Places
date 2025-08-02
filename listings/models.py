@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 from django.utils.text import slugify
@@ -95,7 +96,13 @@ class MonthlyPrice(models.Model):
 
 class Image(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='listing_images/', validators=[ListingImageFileSizeValidator(5)])
+    image = CloudinaryField(
+        'image',
+        folder='listing_images/',
+        validators=[ListingImageFileSizeValidator(5)],
+        blank=True,
+        null=True
+    )
 
 
 class Like(models.Model):
