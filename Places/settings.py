@@ -84,13 +84,6 @@ TEMPLATES = [
     },
 ]
 
-STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
 WSGI_APPLICATION = 'Places.wsgi.application'
 
 
