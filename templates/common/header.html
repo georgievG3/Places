@@ -23,7 +23,6 @@
                         <a href="{% url 'listings_by_category' listing_type='bungalow' %}">Бунгала</a>
                     </div>
                 </li>
-                <li><a href="{% url 'index' %}">Блог</a></li>
                 {% if is_authenticated%}
                     {% if is_staff %}
                         <li class='sub-navigation'>

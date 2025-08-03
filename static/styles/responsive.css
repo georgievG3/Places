@@ -1,4 +1,10 @@
 @media (max-width: 768px) {
+    .messages{
+        width: 100%;
+        text-align: center;
+        left: 0;
+    }
+
     /*INDEX PAGE*/
     .header-container{
       margin: 0;
@@ -26,6 +32,7 @@
 
     .header-logo{
         width: 120px;
+        margin-left: -15px;
     }
 
     .hamburger {
@@ -46,7 +53,7 @@
     }
 
     .header-right-container{
-      margin-left: 10px;
+      margin-left: 15px;
     }
 
     #map{
@@ -110,6 +117,10 @@
     /*  category container  */
     .category-container-description{
         font-size: 14px;
+    }
+
+    .category-container-card:hover p{
+        transform: translateY(5px);
     }
 
     .category-container {
@@ -433,6 +444,10 @@
     }
 
     .blog-post{
+        width: 90%;
+    }
+
+    .blog-post-container-block img{
         width: 90%;
     }
 
