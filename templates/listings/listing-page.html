@@ -28,7 +28,7 @@
             {% for image in listing.images.all|slice:"1:5" %}
                 <img src="{{ image.image.url }}" alt="">
             {% endfor %}
-            <button id="open-gallery-btn" class="show-images-btn basic-btn">Виж всички снимки</button>
+            <button id="open-gallery-btn" class="show-images-btn basic-btn"><i class="fa-regular fa-images"></i></button>
         </div>
         <div id="image-modal" class="modal">
             <div class="modal-content">
@@ -96,7 +96,7 @@
                 </div>
                 <hr>
                 <div class="listing-reviews-container">
-                    <h2>Ревюта</h2>
+                    <h2 class='mini-title'>Ревюта</h2>
                     <div class="listing-reviews-buttons">
                         <button class="pre-btn"><i class="fa-solid fa-angle-left"></i></button>
                         <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>

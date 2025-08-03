@@ -649,6 +649,7 @@ input[type="submit"]{
     grid-template-columns: repeat(var(--num-cols), 1fr);
     grid-auto-rows: var(--row-height);
     gap: var(--gap);
+    position: relative;
 }
 
 .listing-images-container > img{
@@ -731,8 +732,9 @@ input[type="submit"]{
 
 .show-images-btn{
     position: absolute;
-    top: 80%;
-    right: 10%;
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
     border: none;
     padding: 10px;
     color: white;
@@ -933,6 +935,7 @@ input[type="submit"]{
     gap: 20px;
     padding: 5px 10px;
     border-radius: 5px;
+    align-self: center;
 }
 
 .pre-btn,

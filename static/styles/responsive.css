@@ -155,6 +155,10 @@
         width: 340px;
     }
 
+    .blog-card img{
+        padding: 20px;
+    }
+
     /*  info container  */
     .index-info-container hr{
         display: none;
@@ -176,5 +180,79 @@
     }
     .footer-top h2{
         font-size: 14px;
+    }
+
+    /*  REGISTER PAGE  */
+    .authentication-container{
+        width: 320px;
+    }
+
+    .authentication-form-container form input{
+        padding: 18px 12px;
+    }
+
+    /*  LISTING PAGE  */
+    .listing-page-container{
+        padding: 10px;
+    }
+
+    .listing-title-container{
+        flex-direction: column;
+    }
+
+    .listing-title-container h1{
+        font-size: 18px;
+    }
+
+    .listing-title-container-btns{
+        font-size: 14px;
+    }
+
+    .listing-images-container{
+        --gap: 10px;
+        --row-height: 80px;
+    }
+
+    .show-images-btn{
+        font-size: 10px;
+        padding: 5px;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .mini-title{
+        font-size: 14px;
+    }
+
+    .mini-description-container{
+        margin-top: 0;
+    }
+
+    .mini-description-container ul li{
+        font-size: 10px;
+    }
+
+    .host{
+        flex-direction: column;
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .listing-container{
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .listing-info-container{
+        width: 90%;
+    }
+
+    .amenity-container ul{
+        font-size: 12px;
+    }
+
+    .listing-social-container{
+        width: 90%;
+        transform: none;
     }
 }
