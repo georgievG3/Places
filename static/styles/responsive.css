@@ -24,6 +24,10 @@
         display: block;
     }
 
+    .header-logo{
+        width: 120px;
+    }
+
     .hamburger {
         display: flex;
     }
@@ -37,6 +41,8 @@
         position: relative;
         background: none;
         box-shadow: none;
+        top: 0;
+        padding: 0 0 10px 10px;
     }
 
     .header-right-container{
@@ -244,7 +250,7 @@
     }
 
     .listing-info-container{
-        width: 90%;
+        width: 100%;
     }
 
     .amenity-container ul{
@@ -255,4 +261,179 @@
         width: 90%;
         transform: none;
     }
+
+    /*  LISTING BY CATEGORY PAGE  */
+    .listing-by-category-container{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .category-map-container{
+        width: 100%;
+        height: 50vh;
+    }
+
+    .category-results{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-search-results{
+        width: 100%;
+    }
+
+    .fc .fc-toolbar-title{
+        font-size: 16px;
+    }
+
+    .fc-direction-ltr{
+        height: 450px;
+    }
+
+    .category-amenities-container{
+        display: none;
+    }
+
+    /*  RESERVATION PAGE  */
+    .reservation-containers{
+        flex-direction: column;
+    }
+
+    .reservation-container-left{
+        width: 300px;
+        display: flex;
+    }
+
+    .reservation-container h1{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .reservation-container-right{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+    }
+
+    .chosen-days{
+        flex-direction: column;
+    }
+
+    .reservation-container-right form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /*  ADD LISTING PAGE  */
+    .listing-form-detail-info{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .listing-form-details-location-input input, select{
+        width: 100%;
+    }
+
+    .add-listing-form-details label{
+        font-size: 12px;
+    }
+
+    #id_amenities input{
+        width: 12px;
+        height: 12px;
+    }
+
+    .monthly-price-form{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .monthly-price-form input{
+        padding: 5px ;
+        outline: none;
+    }
+
+    .add-listing-form h1{
+        font-size: 24px;
+    }
+
+    .add-listing-btn{
+        font-size: 15px;
+        padding: 12px 25px;
+    }
+
+    /*  USER LISTINGS  */
+    .user-listing-card{
+        flex-direction: column;
+        width: 90%;
+        padding: 10px;
+    }
+
+    .user-listings h1{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .user-listing-card img{
+        width: 100%;
+    }
+
+    .user-listing-card-info-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /*  DELETE LISTING PAGE  */
+    .delete-listing-page h1{
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .delete-listing-image{
+        width: 90%;
+    }
+
+    /*  LIKES PAGE  */
+    .empty-likes{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .liked-listings-container{
+        width: 100%;
+        margin: 50px 0;
+    }
+
+    /*  PROFILE PAGE  */
+    .profile-details-container{
+        flex-direction: column;
+    }
+
+    .profile-details{
+        width: 90%;
+    }
+
+    .profile-details-hr{
+        display: none;
+    }
+
+    .profile-edit-form{
+        width: 90%;
+        align-self: center;
+    }
+
+    /*  BLOG POST PAGE  */
+    .blog-post-container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .blog-post{
+        width: 90%;
+    }
+
 }

@@ -2,6 +2,7 @@
 {% block content %}
     <div class="user-listings">
         {% if listings %}
+            <h1>МОИТЕ ОБЯВИ:</h1>
             {% for listing in listings %}
                 <div class='user-listing-card'>
                     <a href="{% url 'edit-listing' listing.slug %}" class = 'listing-buttons listing-edit'><i class="fa-solid fa-pen-to-square"></i></a>

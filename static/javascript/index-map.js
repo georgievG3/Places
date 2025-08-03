@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var map = L.map('map').setView([42.5, 24.5], zoomLevel);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        gestureHandling: true,
         maxZoom: 19,
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);

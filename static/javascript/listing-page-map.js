@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const map = L.map('map').setView([lat, lng], 10);
 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                gestureHandling: true,
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
