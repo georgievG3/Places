@@ -15,7 +15,7 @@
             <ul class="header-ul">
                 <li><a href="{% url 'index' %}">Начало</a></li>
                 <li class='sub-navigation'>
-                    <a href="{% url 'index' %}" class='sub-navigation-btn'>Категории</a>
+                    <p class='sub-navigation-btn'>Категории</p>
                     <div class="sub-navigation-options">
                         <a href="{% url 'listings_by_category' listing_type='camper' %}">Каравани</a>
                         <a href="{% url 'listings_by_category' listing_type='camping' %}">Къмпинги</a>
@@ -35,7 +35,7 @@
                         </li>
                     {% elif is_partner %}
                         <li class='sub-navigation'>
-                            <a href="{% url 'profile-details' %}" class='sub-navigation-btn'>Акаунт</a>
+                            <p class='sub-navigation-btn'>Акаунт</p>
                             <div class="sub-navigation-options">
                                 <a href="{% url 'my-listings' %}">Моите места</a>
                                 <a href="{% url 'add-listing' %}">Добави място</a>
@@ -46,7 +46,7 @@
                         </li>
                     {% else %}
                         <li class='sub-navigation'>
-                            <a href="{% url 'profile-details' %}" class='sub-navigation-btn'>Акаунт</a>
+                            <p class='sub-navigation-btn'>Акаунт</p>
                             <div class="sub-navigation-options">
                                 <a href="{% url 'add-listing' %}">Добави място</a>
                                 <a href="{% url 'my_reservations' %}">Резервирани</a>

@@ -69,7 +69,6 @@
     .map-container-search input[name="check_in"] {
         width: 20%;
         margin-bottom: 0.25rem;
-        font-size: 8px;
     }
 
     .map-container-search label:nth-child(3),
@@ -99,5 +98,83 @@
 
     .map-container-option{
         padding: 5px;
+        font-size: 11px;
+    }
+
+    /*  category container  */
+    .category-container-description{
+        font-size: 14px;
+    }
+
+    .category-container {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+
+    .category-container-card p{
+        font-size: 20px;
+    }
+
+    /*  recommended container  */
+    .recommended-container-card{
+        height: 250px;
+        width: 300px;
+    }
+
+    .slider-container{
+        max-width: 340px;
+    }
+
+    .recommended-container-price{
+        font-size: 14px;
+    }
+
+    .recommended-container-info h3{
+        font-size: 16px;
+    }
+
+    .recommended-container-info p{
+        font-size: 14px;
+    }
+
+    .index-recommended-container{
+        padding: 0 0 50px 0;
+    }
+
+    .listing-reviews-buttons{
+        margin-top: 20px;
+    }
+
+    /*  blog container  */
+    .index-blog-container{
+        padding: 0 0 50px 0;
+    }
+
+    .blog-card{
+        width: 340px;
+    }
+
+    /*  info container  */
+    .index-info-container hr{
+        display: none;
+    }
+
+    .index-info-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .info-container-card p{
+        font-size: 16px;
+    }
+
+    /*  footer  */
+    .footer-top{
+        font-size: 12px;
+    }
+    .footer-top h2{
+        font-size: 14px;
     }
 }
