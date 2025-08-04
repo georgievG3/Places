@@ -59,3 +59,4 @@
 ## ⚙️ Installation & Setup 
  - git clone https://github.com/georgievG3/Places.git
  - pip install -r requirements.txt
+ - or visit places-bwgsafcse3abaccj.francecentral-01.azurewebsites.net
