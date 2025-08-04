@@ -1,7 +1,7 @@
 from django.urls import path
 
 from listings import views
-from listings.views import ListingDetailsView, DeleteImageView, ListingsByCategoryView
+from listings.views import ListingDetailsView, DeleteImageView, ListingsByCategoryView, CommentCreateView
 
 # urlpatterns = [
 #     path('listing/<slug:slug>/', ListingDetailsView.as_view(), name='listing-detail'),
@@ -21,5 +21,7 @@ urlpatterns = [
     path('delete-listing-image/<int:pk>/', DeleteImageView.as_view(), name='delete-listing-image'),
     path('category/<str:listing_type>s/', ListingsByCategoryView.as_view(), name='listings_by_category'),
     path('like/<int:listing_id>/', views.like, name='like'),
-    path("liked/", views.LikedListingsView.as_view(), name="liked_listings")
+    path("liked/", views.LikedListingsView.as_view(), name="liked_listings"),
+    path('listing/<slug:slug>/comment/add/', CommentCreateView.as_view(), name='add-comment'),
+
 ]

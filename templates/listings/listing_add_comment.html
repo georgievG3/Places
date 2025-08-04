@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+{% block content %}
+    <div class="add-comment-container">
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.comment_text }}
+            {{ form.rating }}
+            <button type="submit">Публикувай</button>
+        </form>
+    </div>
+{% endblock %}

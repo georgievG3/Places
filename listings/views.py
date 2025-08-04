@@ -6,13 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from listings.forms import AddListingForm, AddListingLocationForm, AddListingAmenityForm, MonthlyPriceFormSet, \
-    EditListingForm, MonthlyPriceFormSetEdit, ListingFilterForm, ImageFormSet, ImageFormSetEdit
-from listings.models import Listing, Image, Amenity, Like
+    EditListingForm, MonthlyPriceFormSetEdit, ListingFilterForm, ImageFormSet, ImageFormSetEdit, CommentForm
+from listings.models import Listing, Image, Amenity, Like, Comment
 
 
 # Create your views here.
@@ -303,4 +303,22 @@ class LikedListingsView(LoginRequiredMixin, ListView):
         )
         context["user_likes"] = user_likes
         return context
+
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'listings/listing_add_comment.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.listing = get_object_or_404(Listing, slug=self.kwargs['slug'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.listing = self.listing
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('listing-detail', kwargs={'slug': self.listing.slug})
 

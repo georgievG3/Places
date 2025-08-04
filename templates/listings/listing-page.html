@@ -102,144 +102,36 @@
                         <button class="next-btn"><i class="fa-solid fa-angle-right"></i></button>
                     </div>
                     <div class="reviews-cards slider-container">
-                        <div class="card">
-                            <div class="card-top">
-                                <i class="fa-solid fa-circle-user"></i>
-                                <div class="review-card-name">
-                                    <p>Georgi Georgiev</p>
-                                    <p>Bulgaria</p>
+                        {% for comment in listing.comments.all %}
+                            <div class="card">
+                                <div class="card-top">
+                                    <div class="card-top-profile">
+                                        <i class="fa-solid fa-circle-user"></i>
+                                        <div class="review-card-name">
+                                            <p>{{ comment.user.first_name }}</p>
+                                            {#                                        <p>{{ comment.user.profile.country|default:"Unknown" }}</p>#}
+                                        </div>
+                                    </div>
+                                    <div class="review-date-rating">
+                                        <p class='review-date'>{{ comment.created_at|date:"d/m/Y" }}</p>
+                                        <p class="review-rating">
+                                            {% for i in "12345"|make_list %}
+                                                {% if forloop.counter <= comment.rating %}
+                                                    <i class="fa-solid fa-star"></i>
+                                                {% else %}
+                                                    <i class="fa-regular fa-star"></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="review-date-rating">
-                                    <p class='review-date'>24/05/2025</p>
-                                    <p class="review-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
-                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class="fa-solid fa-circle-user"></i>
-                                <div class="review-card-name">
-                                    <p>Georgi Georgiev</p>
-                                    <p>Bulgaria</p>
-                                </div>
-                                <div class="review-date-rating">
-                                    <p class='review-date'>24/05/2025</p>
-                                    <p class="review-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </p>
+                                <div class="card-bottom">
+                                    <p>{{ comment.comment_text }}</p>
                                 </div>
                             </div>
-                            <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
-                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class="fa-solid fa-circle-user"></i>
-                                <div class="review-card-name">
-                                    <p>Georgi Georgiev</p>
-                                    <p>Bulgaria</p>
-                                </div>
-                                <div class="review-date-rating">
-                                    <p class='review-date'>24/05/2025</p>
-                                    <p class="review-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
-                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class="fa-solid fa-circle-user"></i>
-                                <div class="review-card-name">
-                                    <p>Georgi Georgiev</p>
-                                    <p>Bulgaria</p>
-                                </div>
-                                <div class="review-date-rating">
-                                    <p class='review-date'>24/05/2025</p>
-                                    <p class="review-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
-                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class="fa-solid fa-circle-user"></i>
-                                <div class="review-card-name">
-                                    <p>Georgi Georgiev</p>
-                                    <p>Bulgaria</p>
-                                </div>
-                                <div class="review-date-rating">
-                                    <p class='review-date'>24/05/2025</p>
-                                    <p class="review-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
-                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-top">
-                                <i class="fa-solid fa-circle-user"></i>
-                                <div class="review-card-name">
-                                    <p>Georgi Georgiev</p>
-                                    <p>Bulgaria</p>
-                                </div>
-                                <div class="review-date-rating">
-                                    <p class='review-date'>24/05/2025</p>
-                                    <p class="review-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-bottom">
-                                <p>Уникална каравана с изглед към морето на първа линия. Общи баня и тоалетна, близко до
-                                    лидъл и била. Чиста модерна и запазена с много място за багаж.</p>
-                            </div>
-                        </div>
+                        {% empty %}
+                            <p>Все още няма коментари.</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -258,6 +150,9 @@
                     <p>Адрес: {{ listing.location.address }}</p>
                     <p>Държава: {{ listing.location.region }}</p>
                     <p>Град: {{ listing.location.city }}</p>
+                </div>
+                <div class="listing-social-sticky-container">
+                    <a href="{% url 'add-comment' listing.slug %}" class = 'add-listing-comment'><i class="fa-regular fa-comment"></i>Добави коментар</a>
                 </div>
                 {#                <div class="nearby-destinations">#}
                 {#                    <ul>#}

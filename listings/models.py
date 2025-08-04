@@ -2,6 +2,7 @@ from cloudinary.models import CloudinaryField
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 from django.utils.text import slugify
+from django.utils.timezone import now
 from unidecode import unidecode
 
 from accounts.models import AppUser
@@ -113,4 +114,15 @@ class Like(models.Model):
         AppUser,
         on_delete=models.CASCADE,
     )
+
+
+class Comment(models.Model):
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    comment_text = models.TextField(max_length=100)
+    rating = models.PositiveSmallIntegerField(default=5)
+    created_at = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return f'{self.user.get_full_name() or self.user.email} - {self.rating} stars'
 

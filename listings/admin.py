@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from listings.models import Listing
+from listings.models import Listing, Amenity
 
 
 # Register your models here.
@@ -11,3 +11,9 @@ class ListingAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description', 'mini_description')
     ordering = ('-created_at',)
     list_editable = ('is_approved',)
+
+@admin.register(Amenity)
+class AmenityAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    list_filter = ('name',)
+    search_fields = ('name',)

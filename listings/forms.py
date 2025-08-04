@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 
-from listings.models import Listing, Location, Amenity, Image, MonthlyPrice
+from listings.models import Listing, Location, Amenity, Image, MonthlyPrice, Comment
 
 
 class AddListingForm(forms.ModelForm):
@@ -137,3 +137,21 @@ class ListingFilterForm(forms.Form):
     )
     check_in = forms.DateField(required=False, widget=forms.HiddenInput())
     check_out = forms.DateField(required=False, widget=forms.HiddenInput())
+
+
+class CommentForm(forms.ModelForm):
+    rating = forms.ChoiceField(
+        choices=[(i, f'{i} Stars') for i in range(1, 6)],
+        widget=forms.RadioSelect,
+        label="Рейтинг"
+    )
+
+    class Meta:
+        model = Comment
+        fields = ['comment_text', 'rating']
+        widgets = {
+            'comment_text': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Напишете вашия коментар...'}),
+        }
+        labels = {
+            'comment_text': 'Коментар',
+        }

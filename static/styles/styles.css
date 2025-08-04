@@ -842,6 +842,18 @@ input[type="submit"]{
     gap: 20px;
 }
 
+.add-listing-comment{
+    text-decoration: none;
+    font-size: 22px;
+    color: #022c2c;
+    transition: 0.3s;
+}
+
+.add-listing-comment:hover{
+    color: #129990;
+    transition: 0.3s;
+}
+
 
 .reserve-btn{
     background-color: #129990;
@@ -889,7 +901,7 @@ input[type="submit"]{
 
 .card{
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 10px;
@@ -898,19 +910,21 @@ input[type="submit"]{
     padding: 20px;
     position: relative;
     min-width: 300px;
+    height: 200px;
 }
 
 .card-top{
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    padding: 20px;
+    top: 1px;
 }
 
+
 .review-date-rating{
-    position: absolute;
-    top: 30px;
-    right: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1792,4 +1806,25 @@ input[type="submit"]{
     position: absolute;
     top: 30px;
     right: 30px;
+}
+
+/*ADD_COMMENT_PAGE*/
+.add-comment-container{
+    margin: 100px auto;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.add-comment-container form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#id_rating{
+    color: red;
 }
