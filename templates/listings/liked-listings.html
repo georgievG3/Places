@@ -1,4 +1,5 @@
 {% extends 'common/base.html' %}
+{% load static %}
 {% block content %}
     <div class="liked-listings-container">
         {% if likes %}
@@ -27,13 +28,12 @@
                                 <p>{{ listing.to_listing.max_people }}</p>
                             </div>
                             <div class="listing-like liked-listing">
-                                <a href="{% url 'like' listing.to_listing.id %}">
-                                    {% if listing.to_listing.id in user_likes %}
+                                <div class="listing-like liked-listing">
+                                    <button class="like-btn" data-listing-id="{{ listing.to_listing.id }}"
+                                            aria-label="unlike">
                                         <i class="fa-solid fa-heart" style="color:#ed4040;"></i>
-                                    {% else %}
-                                        <i class="fa-regular fa-heart"></i>
-                                    {% endif %}
-                                </a>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,4 +43,5 @@
             <h1 class = 'empty-likes'>Нямате харесани обяви!</h1>
         {% endif %}
     </div>
+    <script src="{% static 'javascript/like.js' %}"></script>
 {% endblock %}
