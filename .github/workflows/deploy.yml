@@ -37,6 +37,13 @@ jobs:
         echo "CLOUDINARY_NAME=${{ secrets.CLOUDINARY_NAME }}" >> .env
         echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
         echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
+        
+    - name: Debug DB_HOST env var
+      run: |
+          echo "DB_HOST=${DB_HOST}"
+          ping -c 1 ${DB_HOST} || echo "Ping failed"
+      env:
+        DB_HOST: ${{ secrets.DB_HOST }}
 
     - name: Run migrations
       run: |
