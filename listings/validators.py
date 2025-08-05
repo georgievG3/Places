@@ -22,5 +22,6 @@ class ListingImageFileSizeValidator:
             self.__message = value
 
     def __call__(self, value):
-        if value.size > self.file_size_limit * 1024 * 1024:
-            raise ValidationError(self.message)
+        if hasattr(value, 'size'):
+            if value.size > self.file_size_limit * 1024 * 1024:
+                raise ValidationError(self.message)

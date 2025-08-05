@@ -1,11 +1,12 @@
 import json
 
+from asgiref.sync import sync_to_async
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
-from django.http import HttpRequest
+from django.db.models import Q, Avg
+from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
@@ -35,6 +36,9 @@ class ListingDetailsView(DetailView):
             context["is_liked"] = listing.likes.filter(user=self.request.user).exists()
         context['first_half_images'] = first_half_images
         context['second_half_images'] = second_half_images
+
+        avg_rating = listing.comments.aggregate(avg=Avg('rating'))['avg']
+        context['average_rating'] = round(avg_rating or 0, 1)
         return context
 
 
@@ -204,7 +208,11 @@ class UserListingsView(LoginRequiredMixin, ListView):
     slug_url_kwarg = 'slug'
 
     def get_queryset(self):
-        return Listing.objects.filter(owner=self.request.user)
+        return (
+            Listing.objects
+            .filter(owner=self.request.user)
+            .annotate(avg_rating=Avg('comments__rating'))
+        )
 
 
 class ListingsByCategoryView(ListView):
@@ -274,18 +282,24 @@ class ListingsByCategoryView(ListView):
 
 
 @login_required
-def like(request: HttpRequest, listing_id: int):
-    like_object = Like.objects.filter(to_listing_id=listing_id, user=request.user).first()
+async def like(request, listing_id):
+    if request.method != "POST":
+        return JsonResponse({'error': 'POST request required'}, status=400)
+
+    user = request.user
+
+    like_object = await sync_to_async(
+        lambda: Like.objects.filter(to_listing_id=listing_id, user=user).first()
+    )()
 
     if like_object:
-        like_object.delete()
+        await sync_to_async(like_object.delete)()
+        liked = False
     else:
-        Like.objects.create(
-            to_listing_id=listing_id,
-            user=request.user,
-        )
+        await sync_to_async(Like.objects.create)(to_listing_id=listing_id, user=user)
+        liked = True
 
-    return redirect(request.META.get('HTTP_REFERER') + f"#{listing_id}")
+    return JsonResponse({'liked': liked, 'listing_id': listing_id})
 
 
 class LikedListingsView(LoginRequiredMixin, ListView):

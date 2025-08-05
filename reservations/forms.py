@@ -36,15 +36,16 @@ class ReservationForm(forms.ModelForm):
 
         if check_in and check_out:
             if check_in > check_out:
-                raise ValidationError("Датата на напускане трябва да е след датата на настаняване.")
+                self.add_error('check_out', "Датата на напускане трябва да е след датата на настаняване.")
 
             if self.listing and self.listing.reservations.filter(
                     check_in__lt=check_out,
                     check_out__gt=check_in
             ).exists():
-                raise ValidationError("Тези дати вече са заети.")
+                self.add_error('check_in', "Тези дати вече са заети.")
+                self.add_error('check_out', "Тези дати вече са заети.")
 
         if guests and self.listing and guests > self.listing.max_people:
-            raise ValidationError(f"Максималният брой гости за тази обява е {self.listing.max_people}.")
+            self.add_error('guests', f"Максималният брой гости за тази обява е {self.listing.max_people}.")
 
         return cleaned_data

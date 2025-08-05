@@ -1,12 +1,26 @@
 {% extends 'common/base.html' %}
+
 {% block content %}
     <div class="add-comment-container">
-
         <form method="post">
             {% csrf_token %}
-            {{ form.comment_text }}
-            {{ form.rating }}
-            <button type="submit">Публикувай</button>
+
+            <div class="form-group">
+                {{ form.comment_text.label_tag }}
+                {{ form.comment_text }}
+            </div>
+
+            <div class="form-group rating">
+                <label>Оценка:</label>
+                <div class="star-rating">
+                    {% for i in "54321" %}
+                        <input type="radio" name="rating" id="rating-{{ i }}" value="{{ i }}">
+                        <label for="rating-{{ i }}">★</label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <button type="submit" class = 'reserve-btn'>Публикувай</button>
         </form>
     </div>
 {% endblock %}

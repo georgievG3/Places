@@ -163,6 +163,14 @@
         margin-top: 20px;
     }
 
+    .listing-title-rating i{
+        font-size: 14px !important;
+    }
+
+    .like-btn{
+        font-size: 20px !important;
+    }
+
     /*  blog container  */
     .index-blog-container{
         padding: 0 0 50px 0;

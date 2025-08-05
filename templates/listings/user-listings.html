@@ -34,11 +34,22 @@
                             </div>
                             <div class='listing-card-info'>
                                 <p>Рейтинг</p>
-                                <p>0</p>
+                                <div class="review-date-rating">
+                                    <p class="review-rating">
+                                        {% for i in "12345"|make_list %}
+                                            {% if forloop.counter <= listing.avg_rating %}
+                                                <i class="fa-solid fa-star"></i>
+                                            {% else %}
+                                                <i class="fa-regular fa-star"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <span class="rating-value">({{ listing.avg_rating|floatformat:1|default:0 }})</span>
+                                    </p>
+                                </div>
                             </div>
                             <div class='listing-card-info'>
                                 <p>Ревюта</p>
-                                <p>0</p>
+                                <p>{{ listing.comments.count }}</p>
                             </div>
                         </div>
                     </div>

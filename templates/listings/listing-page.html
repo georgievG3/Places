@@ -7,19 +7,32 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
     <div class="listing-page-container">
         <div class="listing-title-container">
-            <h1>{{ listing.title }}</h1>
-            <div class="listing-title-container-btns">
-                <div class="listing-share">
-                    <p><i class="fa-solid fa-arrow-up-from-bracket"></i>Сподели</p>
+            <div class="listing-title-rating">
+                <h1>{{ listing.title }}</h1>
+                <div class="review-date-rating">
+                    <p class="review-rating">
+                        {% for i in "12345"|make_list %}
+                            {% if forloop.counter <= average_rating %}
+                                <i class="fa-solid fa-star"></i>
+                            {% else %}
+                                <i class="fa-regular fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
                 </div>
-                <div class="listing-like">
-                    <a href="{% url 'like' listing.id %}">
+            </div>
+            <div class="listing-title-container-btns">
+{#                <div class="listing-share">#}
+{#                    <p><i class="fa-solid fa-arrow-up-from-bracket"></i>Сподели</p>#}
+{#                </div>#}
+                <div class="listing-like" data-listing-id="{{ listing.id }}">
+                    <button class="like-btn" aria-label="like">
                         {% if is_liked %}
                             <i class="fa-solid fa-heart" style="color:#ed4040;"></i>
                         {% else %}
                             <i class="fa-regular fa-heart"></i>
                         {% endif %}
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -28,7 +41,8 @@
             {% for image in listing.images.all|slice:"1:5" %}
                 <img src="{{ image.image.url }}" alt="">
             {% endfor %}
-            <button id="open-gallery-btn" class="show-images-btn basic-btn"><i class="fa-regular fa-images"></i></button>
+            <button id="open-gallery-btn" class="show-images-btn basic-btn"><i class="fa-regular fa-images"></i>
+            </button>
         </div>
         <div id="image-modal" class="modal">
             <div class="modal-content">
@@ -152,7 +166,8 @@
                     <p>Град: {{ listing.location.city }}</p>
                 </div>
                 <div class="listing-social-sticky-container">
-                    <a href="{% url 'add-comment' listing.slug %}" class = 'add-listing-comment'><i class="fa-regular fa-comment"></i>Добави коментар</a>
+                    <a href="{% url 'add-comment' listing.slug %}" class='add-listing-comment'><i
+                            class="fa-regular fa-comment"></i>Добави коментар</a>
                 </div>
                 {#                <div class="nearby-destinations">#}
                 {#                    <ul>#}
@@ -176,4 +191,5 @@
         ];
     </script>
     <script src="{% static 'javascript/reservation-calendar.js' %}"></script>
+    <script src="{% static 'javascript/like.js' %}"></script>
 {% endblock %}

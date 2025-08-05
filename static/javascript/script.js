@@ -58,3 +58,4 @@ document.getElementById('add-block').addEventListener('click', function () {
 
         totalForms.value = currentForms + 1;
     });
+

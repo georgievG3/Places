@@ -19,19 +19,49 @@
                     {% csrf_token %}
                     <h2>Избрани дати: </h2>
                     <div class="chosen-days">
-                        {{ form.check_in.label }} {{ form.check_in }}
-                        {{ form.check_out.label }} {{ form.check_out }}
+                        {{ form.check_in.label_tag }} {{ form.check_in }}
+                        {% for error in form.check_in.errors %}
+                            <p class="error-msg">{{ error }}</p>
+                        {% endfor %}
+
+                        {{ form.check_out.label_tag }} {{ form.check_out }}
+                        {% for error in form.check_out.errors %}
+                            <p class="error-msg">{{ error }}</p>
+                        {% endfor %}
                     </div>
 
                     <h2>Вашите данни:</h2>
                     <div class="reservation-info">
-                        {{ form.full_name.label }} {{ form.full_name }}
-                        {{ form.phone.label }} {{ form.phone }}
-                        {{ form.guests.label }} {{ form.guests }}
-                        {{ form.note.label }} {{ form.note }}
+                        {{ form.full_name.label_tag }} {{ form.full_name }}
+                        {% for error in form.full_name.errors %}
+                            <p class="error-msg">{{ error }}</p>
+                        {% endfor %}
+
+                        {{ form.phone.label_tag }} {{ form.phone }}
+                        {% for error in form.phone.errors %}
+                            <p class="error-msg">{{ error }}</p>
+                        {% endfor %}
+
+                        {{ form.guests.label_tag }} {{ form.guests }}
+                        {% for error in form.guests.errors %}
+                            <p class="error-msg">{{ error }}</p>
+                        {% endfor %}
+
+                        {{ form.note.label_tag }} {{ form.note }}
+                        {% for error in form.note.errors %}
+                            <p class="error-msg">{{ error }}</p>
+                        {% endfor %}
                     </div>
 
-                    <button type="submit" class = 'basic-btn'>Резервирай</button>
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {% for error in form.non_field_errors %}
+                                <p class="error-msg">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <button type="submit" class='basic-btn'>Резервирай</button>
                 </form>
             </div>
         </div>

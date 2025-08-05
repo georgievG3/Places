@@ -1,6 +1,7 @@
 import datetime
 
 from django.contrib.auth.models import User
+from django.db.models import Avg
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 
@@ -18,7 +19,7 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         listings_count = Listing.objects.all().count()
         listings_today_count = Listing.objects.filter(created_at__date=datetime.date.today()).count()
-        listings = Listing.objects.filter(is_approved=True).select_related("location")
+        listings = Listing.objects.filter(is_approved=True).select_related("location").annotate(avg_rating=Avg('comments__rating'))
         users_count = AppUser.objects.all().count()
 
         markers = []

@@ -13,6 +13,8 @@ from reservations.models import Reservation
 @login_required
 def reserve_listing_view(request, slug):
     listing = get_object_or_404(Listing, slug=slug)
+    check_in = None
+    check_out = None
 
     if request.method == "POST":
         form = ReservationForm(request.POST, listing=listing)
